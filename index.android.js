@@ -6,13 +6,16 @@ import {
   View
 } from 'react-native';
 import Map from './app/components/Map';
-console.log(Map);
+import Control from './app/components/Control';
 
 
 export default class Q3ProjectFE extends Component {
   render() {
     return (
-      <Map />
+      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-end'}}>
+        <Map />
+        <Control />
+      </View>
     );
   }
 }
