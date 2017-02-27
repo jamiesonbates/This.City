@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import Map from './app/components/Map';
+console.log(Map);
 
 
 export default class Q3ProjectFE extends Component {
