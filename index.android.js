@@ -7,12 +7,13 @@ import {
 } from 'react-native';
 import Map from './app/components/Map';
 import Control from './app/components/Control';
+import Login from './app/components/Login';
 
 
 export default class Q3ProjectFE extends Component {
   render() {
     return (
-        <Map />
+      <Login />
     );
   }
 }
