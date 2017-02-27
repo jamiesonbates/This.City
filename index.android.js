@@ -12,10 +12,7 @@ import Control from './app/components/Control';
 export default class Q3ProjectFE extends Component {
   render() {
     return (
-      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-end'}}>
         <Map />
-        <Control />
-      </View>
     );
   }
 }
