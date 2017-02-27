@@ -11,36 +11,35 @@ import Control from './app/components/Control';
 import Login from './app/components/Login';
 import Report from './app/components/Report';
 import Problem from './app/components/Problem';
+import Registration from './app/components/Registration';
 
-const routes = [
-  {index: 0}
-]
+
+const routes = [];
 
 export default class Q3ProjectFE extends Component {
   renderScene(route, navigator) {
     switch (route.name) {
       case 'login':
-      return <Login navigator={navigator} />
-
+        return <Login navigator={navigator} />
+      case 'registration':
+        return <Registration navigator={navigator} />
       case 'map':
-      return <Map navigator={navigator} />
-
+        return <Map navigator={navigator} />
       case 'report':
-      return <Report navigator={navigator} />
-
+        return <Report navigator={navigator} />
       case 'problem':
-      return <Problem navigator={navigator} />
-
+        return <Problem navigator={navigator} />
       default:
-      return <Login navigator={navigator} />
-
+        return <View>
+          <Text>EMPTY</Text>
+        </View>
     }
   }
 
   render() {
     return (
       <Navigator
-        initialRoute={{name: 'problem'}}
+        initialRoute={{name: 'login'}}
         renderScene={this.renderScene.bind(this)}
       />
     )
