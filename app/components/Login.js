@@ -40,6 +40,12 @@ export default class Login extends Component {
       username: '',
       password: ''
     };
+
+    this.navigate = this.navigate.bind(this);
+  }
+
+  navigate(routeName) {
+    this.props.navigator.push({ name: routeName })
   }
 
   render() {
@@ -60,7 +66,10 @@ export default class Login extends Component {
           secureTextEntry={true}
           value={this.state.password}
         />
-        <TouchableHighlight style={styles.submitButton}>
+        <TouchableHighlight
+          style={styles.submitButton}
+          onPress={() => this.navigate('map')}
+        >
           <Text>Submit</Text>
         </TouchableHighlight>
       </View>
