@@ -9,6 +9,7 @@ import {
 import Map from './app/components/Map';
 import Control from './app/components/Control';
 import Login from './app/components/Login';
+import Report from './app/components/Report';
 
 const routes = [
   {index: 0}
@@ -23,6 +24,9 @@ export default class Q3ProjectFE extends Component {
       case 'map':
       return <Map navigator={navigator} />
 
+      case 'report':
+      return <Report navigator={navigator} />
+
       default:
       return <Login navigator={navigator} />
 
@@ -32,7 +36,7 @@ export default class Q3ProjectFE extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{name: 'login'}}
+        initialRoute={{name: 'report'}}
         renderScene={this.renderScene.bind(this)}
       />
     )
