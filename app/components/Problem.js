@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, StyleSheet, Button, ListView } from 'react-native';
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  problem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
+});
 
 class Problem extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Issue Name</Text>
         <Text>Description</Text>
         <Text>Author</Text>
         <Text>Photos</Text>
         <View>
           <Text>Is this a problem?</Text>
-          <View>
+          <View style={styles.problem}>
             <Button
               title="Yes"
             />
@@ -22,11 +33,9 @@ class Problem extends Component {
             />
           </View>
         </View>
-        <Text>Comment</Text>
-        <TextInput
-          value=""
+        <Button
+          title="Comments"
         />
-        <Text>List of Comments</Text>
       </View>
     );
   }
