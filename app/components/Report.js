@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, StyleSheet, TouchableHighlight, Button } from 'react-native';
+import MiniMap from './MiniMap';
 
 const styles = StyleSheet.create({
   container: {
@@ -61,6 +62,10 @@ class Report extends Component {
             value={this.state.description}
             style={styles.textInputs}
           />
+        </View>
+
+        <View style={{flex: 1, flexDirection: 'row'}}>
+          <MiniMap currentLocation={this.props.currentLocation} />
         </View>
 
         <View style={styles.views}>

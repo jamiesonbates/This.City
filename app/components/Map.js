@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   map: {
-    flex: 0.8
+    flex: 1
   },
 });
 
@@ -24,8 +24,8 @@ export default class Map extends Component {
 
     this.state = {
       center: {
-        lat: null,
-        lng: null
+        lat: 37.78825,
+        lng: -122.4324
       },
       markers: [{id: 1, lat: 37.78825, lng: -122.4324}]
     }
@@ -62,17 +62,16 @@ export default class Map extends Component {
          }
        </MapView>
 
-       <Control nav={this.props.navigator}/>
+       <Control
+         currentLocation={this.state.center}
+         nav={this.props.navigator}
+       />
 
       </View>
     );
   }
 
   componentWillMount() {
-    //
-  }
-
-  componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         var initialPosition = JSON.stringify(position);
@@ -81,9 +80,13 @@ export default class Map extends Component {
           lng: position.coords.longitude
         }});
       },
-      (error) => alert('hello'),
+      (error) => alert('NOT WORKING'),
       {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
     );
+  }
+
+  componentDidMount() {
+
 
     this.watchID = navigator.geolocation.watchPosition((position) => {
       var lastPosition = JSON.stringify(position);
