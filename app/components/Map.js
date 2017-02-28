@@ -82,6 +82,7 @@ export default class Map extends Component {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         var initialPosition = JSON.stringify(position);
+        alert('HIHIHIIHI')
         this.setState({center: {
           lat: position.coords.latitude,
           lng: position.coords.longitude
