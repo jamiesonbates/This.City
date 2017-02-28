@@ -31,16 +31,6 @@ export default class Map extends Component {
     }
 
     this.watchId = null;
-    this.getMarkers = this.getMarkers.bind(this);
-  }
-
-  getMarkers() {
-    axios.get('https://q3project-server.herokuapp.com/api/markers', {
-      userId: this.props.userInfo.id
-    })
-      .then((res) => {
-        console.log(res);
-      })
   }
 
   render() {
@@ -79,6 +69,10 @@ export default class Map extends Component {
   }
 
   componentWillMount() {
+    //
+  }
+
+  componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         var initialPosition = JSON.stringify(position);
@@ -88,12 +82,10 @@ export default class Map extends Component {
           lng: position.coords.longitude
         }});
       },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+      (error) => alert(this.state.center.lat),
+      {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
     );
-  }
 
-  componentDidMount() {
     this.watchID = navigator.geolocation.watchPosition((position) => {
       var lastPosition = JSON.stringify(position);
 
@@ -104,7 +96,17 @@ export default class Map extends Component {
       alert(this.state.center.lng)
     });
 
-    this.forceUpdate();
+    axios
+      .get('https://q3project-server.herokuapp.com/api/markers', {
+        lat: this.state.center.lat,
+        lng: this.state.center.lng
+      })
+      .post((res) => {
+        const markers = res.data;
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
   }
 
   componentWillUnmount() {
