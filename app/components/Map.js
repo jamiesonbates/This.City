@@ -24,8 +24,8 @@ export default class Map extends Component {
 
     this.state = {
       center: {
-        lat: 37.78825,
-        lng: -122.4324
+        lat: 47.5992,
+        lng: -122.334
       },
       markers: [{id: 1, lat: 37.78825, lng: -122.4324}]
     }
