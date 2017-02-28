@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import MapView from 'react-native-maps';
 import Control from './Control';
+import axios from 'axios';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,6 +39,16 @@ export default class Map extends Component {
     }
 
     this.watchId = null;
+    this.getMarkers = this.getMarkers.bind(this);
+  }
+
+  getMarkers() {
+    axios.get('https://q3project-server.herokuapp.com/api/markers', {
+      userId: this.props.userInfo.id
+    })
+      .then((res) => {
+        console.log(res);
+      })
   }
 
   render() {
