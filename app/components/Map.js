@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import MapView from 'react-native-maps';
+import Control from './Control';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,7 +42,7 @@ export default class Map extends Component {
 
   render() {
     const { region } = this.props;
-    alert(this.state);
+    // alert(this.state);
 
     return (
       <View style={styles.container}>
@@ -68,6 +69,7 @@ export default class Map extends Component {
            ))
          }
        </MapView>
+       <Control />
       </View>
     );
   }

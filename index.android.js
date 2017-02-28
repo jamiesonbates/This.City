@@ -17,10 +17,31 @@ import Registration from './app/components/Registration';
 const routes = [];
 
 export default class Q3ProjectFE extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userInfo: {
+        id: null,
+        token: null
+      }
+    };
+
+    this.getUserInfo = this.getUserInfo.bind(this);
+  }
+
+  getUserInfo(nextState) {
+    this.setState(nextState);
+    alert(this.state.userInfo.id)
+  }
+
   renderScene(route, navigator) {
     switch (route.name) {
       case 'login':
-        return <Login navigator={navigator} />
+        return <Login
+          navigator={navigator}
+          getUserInfo={this.getUserInfo}
+        />
       case 'registration':
         return <Registration navigator={navigator} />
       case 'map':
@@ -44,7 +65,6 @@ export default class Q3ProjectFE extends Component {
       />
     )
   }
-
 }
 
 AppRegistry.registerComponent('Q3ProjectFE', () => Q3ProjectFE);
