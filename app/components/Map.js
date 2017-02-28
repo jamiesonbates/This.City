@@ -25,23 +25,82 @@ const styles = StyleSheet.create({
 });
 
 export default class Map extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      center: {
+        lat: 37.78825,
+        lng: -122.4324
+      },
+      markers: [{id: 1, lat: 37.78825, lng: -122.4324}]
+    }
+
+    this.watchId = null;
+  }
+
   render() {
     const { region } = this.props;
-    console.log(region);
+    alert(this.state);
 
     return (
       <View style={styles.container}>
         <MapView
           style={styles.map}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+          region={{
+            latitude: this.state.center.lat,
+            longitude: this.state.center.lng,
+            latitudeDelta: 0.1922,
+            longitudeDelta: 0.1421,
           }}
        >
+         {
+           this.state.markers.map(marker => (
+             <MapView.Marker
+               key={marker.id}
+               coordinate={
+                 {
+                   latitude: marker.lat,
+                   longitude: marker.lng
+                 }
+               }
+             />
+           ))
+         }
        </MapView>
       </View>
     );
+  }
+
+  componentWillMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        var initialPosition = JSON.stringify(position);
+        this.setState({center: {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }});
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+  }
+
+  componentDidMount() {
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      var lastPosition = JSON.stringify(position);
+
+      this.setState({center: {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      }});
+      alert(this.state.center.lng)
+    });
+
+    this.forceUpdate();
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
   }
 }
