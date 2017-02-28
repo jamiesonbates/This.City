@@ -46,8 +46,8 @@ export default class Q3ProjectFE extends Component {
         return <Registration navigator={navigator} />
       case 'map':
         return <Map userInfo={this.state.userInfo} navigator={navigator} />
-      case 'report':
-        return <Report navigator={navigator} />
+      // case 'report':
+      //   return <Report />
       case 'problem':
         return <Problem navigator={navigator} />
       default:

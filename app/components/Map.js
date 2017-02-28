@@ -24,8 +24,8 @@ export default class Map extends Component {
 
     this.state = {
       center: {
-        lat: 37.78825,
-        lng: -122.4324
+        lat: null,
+        lng: null
       },
       markers: [{id: 1, lat: 37.78825, lng: -122.4324}]
     }
@@ -43,8 +43,8 @@ export default class Map extends Component {
           region={{
             latitude: this.state.center.lat,
             longitude: this.state.center.lng,
-            latitudeDelta: 0.1922,
-            longitudeDelta: 0.1421,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
           }}
        >
          {
@@ -62,7 +62,7 @@ export default class Map extends Component {
          }
        </MapView>
 
-       <Control />
+       <Control nav={this.props.navigator}/>
 
       </View>
     );
@@ -76,13 +76,12 @@ export default class Map extends Component {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         var initialPosition = JSON.stringify(position);
-        alert('HIHIHIIHI')
         this.setState({center: {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }});
       },
-      (error) => alert(this.state.center.lat),
+      (error) => alert('hello'),
       {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
     );
 
@@ -93,20 +92,25 @@ export default class Map extends Component {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }});
-      alert(this.state.center.lng)
     });
 
-    axios
-      .get('https://q3project-server.herokuapp.com/api/markers', {
-        lat: this.state.center.lat,
-        lng: this.state.center.lng
-      })
-      .post((res) => {
-        const markers = res.data;
-      })
-      .catch((err) => {
-        console.error(err.message);
-      });
+    // axios
+    //   .get('https://q3project-server.herokuapp.com/api/markers', {
+    //     lat: this.state.center.lat,
+    //     lng: this.state.center.lng
+    //   })
+    //   .then((res) => {
+    //     const markers = res.data;
+    //
+    //     this.setState({
+    //       markers: markers
+    //     });
+    //
+    //     alert(markers);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err.message);
+    //   });
   }
 
   componentWillUnmount() {

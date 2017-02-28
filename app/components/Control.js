@@ -50,7 +50,7 @@ class Control extends Component {
           visible={this.state.reportModalOpen}
 
         >
-          <Report />
+          <Report navigator={this.props.nav} />
         </Modal>
 
         <TouchableHighlight>
