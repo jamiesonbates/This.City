@@ -52,7 +52,11 @@ export default class Login extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      userInfo: {
+        id: '',
+        token: ''
+      }
     };
 
     this.navigate = this.navigate.bind(this);
@@ -71,6 +75,16 @@ export default class Login extends Component {
       })
       .then((res) => {
         if (res) {
+          const nextState = {
+            userInfo: {
+              id: res.data.id,
+              token: res.data.token
+            }
+          };
+
+          this.props.getUserInfo(nextState);
+
+          this.setState(nextState);
           this.navigate('map');
         }
       })
