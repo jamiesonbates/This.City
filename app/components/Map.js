@@ -3,7 +3,7 @@ import {
   AppRegistry,
   Text,
   StyleSheet,
-  View
+  View,
 } from 'react-native';
 import MapView from 'react-native-maps';
 import Control from './Control';
@@ -11,18 +11,10 @@ import axios from 'axios';
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    flex: 1
   },
   map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    flex: 0.8
   },
 });
 
@@ -53,7 +45,6 @@ export default class Map extends Component {
 
   render() {
     const { region } = this.props;
-    // alert(this.state);
 
     return (
       <View style={styles.container}>
@@ -80,7 +71,9 @@ export default class Map extends Component {
            ))
          }
        </MapView>
+
        <Control />
+
       </View>
     );
   }

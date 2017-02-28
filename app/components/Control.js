@@ -1,27 +1,69 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { Text, View, StyleSheet, TouchableHighlight, Modal } from 'react-native';
+import IconStyle1 from 'react-native-vector-icons/SimpleLineIcons';
+import IconStyle2 from 'react-native-vector-icons/FontAwesome';
+import IconStyle3 from 'react-native-vector-icons/Foundation';
+import Report from './Report';
 
-const user = (<Icon name="user" size={60} color="white"/>);
-const report = (<Icon name="folder" size={60} color="white"/>);
-const trending = (<Icon name="bolt" size={60} color="white"/>);
+const userIcon = (<IconStyle1 name="user" size={30} color="white"/>);
+const reportIcon = (<IconStyle2 name="exclamation-triangle" size={40} color="white"/>);
+const trendingIcon = (<IconStyle3 name="graph-trend" size={40} color="white"/>);
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
+    backgroundColor: '#242823',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: 10
+    padding: 10,
+  },
+  icon: {
+    fontSize: 15
   }
 })
 
 class Control extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      reportModalOpen: false
+    }
+
+    this.toggleReport = this.toggleReport.bind(this);
+  }
+
+  toggleReport() {
+    if (this.state.reportModalOpen) {
+      this.setState({ reportModalOpen: false });
+    }
+    else {
+      this.setState({ reportModalOpen: true });
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View>{ report }</View>
-        <View>{ trending }</View>
-        <View>{ user }</View>
+        <Modal
+          animationType={"slide"}
+          onRequestClose={this.toggleReport}
+          visible={this.state.reportModalOpen}
+
+        >
+          <Report />
+        </Modal>
+
+        <TouchableHighlight>
+          <View>{trendingIcon}</View>
+        </TouchableHighlight>
+
+        <TouchableHighlight onPress={this.toggleReport}>
+          <View>{reportIcon}</View>
+        </TouchableHighlight>
+
+        <TouchableHighlight>
+          <View>{userIcon}</View>
+        </TouchableHighlight>
       </View>
     );
   }

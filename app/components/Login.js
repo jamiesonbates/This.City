@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Button,
   Text,
   TextInput,
   TouchableHighlight,
@@ -29,10 +30,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   submitButton: {
-    borderRadius: 6,
-    borderWidth: 1,
+    borderRadius: 16,
+    // borderWidth: 1,
     height: 44,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     marginTop: 20,
     width: 80
   },
@@ -116,13 +117,13 @@ export default class Login extends Component {
         />
       </View>
 
-
-      <TouchableHighlight
+      <Button
+        color="#851515"
+        onPress={this.callApi}
         style={styles.submitButton}
-        onPress={() => this.callApi()}
-      >
-        <Text style={{textAlign: 'center'}}>Submit</Text>
-      </TouchableHighlight>
+        title="Submit"
+      />
+
 
       <View style={styles.registerLink}>
         <Text>Not a member?</Text>

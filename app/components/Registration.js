@@ -4,7 +4,8 @@ import {
   TextInput,
   TouchableHighlight,
   StyleSheet,
-  View
+  View,
+  BackAndroid
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -33,7 +34,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 80
   },
-})
+});
+
+// BackAndroid.addEventListener("hardwareBackPress", () => {
+//   if (navigator.getCurrentRoutes().length > 1) {
+//     this.navigate('login')
+//     return true // do not exit app
+//   } else {
+//     return false // exit app
+//   }
+// });
 
 export default class Registration extends Component {
   constructor(props) {
@@ -71,9 +81,9 @@ export default class Registration extends Component {
         <Text style={styles.inputLabel}>Password</Text>
         <TextInput
           name="password"
-          style={styles.inputField}
           onChangeText={(password) => this.setState({password})}
           secureTextEntry={true}
+          style={styles.inputField}
           value={this.state.password}
         />
 
