@@ -35,7 +35,6 @@ export default class MiniMap extends Component {
   }
 
   dragIt(event) {
-    console.error(event.nativeEvent.coordinate.latitude)
     this.setState({ marker: event.nativeEvent.coordinate });
   }
 
@@ -57,7 +56,7 @@ export default class MiniMap extends Component {
          <MapView.Marker
           draggable
           coordinate={this.state.marker}
-          onPress={(e) => {console.error('dragEnd', e.nativeEvent.coordinate)}}
+          onDrag={(e) => {this.dragIt(e)}}
          >
          </MapView.Marker>
        </MapView>
