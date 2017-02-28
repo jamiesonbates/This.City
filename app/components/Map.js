@@ -72,11 +72,13 @@ export default class Map extends Component {
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        var initialPosition = JSON.stringify(position);
-        this.setState({center: {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }});
+        // const initialPosition = JSON.stringify(position);
+        this.setState({
+          center: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+        });
       },
       (error) => alert('NOT WORKING'),
       {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
@@ -87,12 +89,15 @@ export default class Map extends Component {
 
 
     this.watchID = navigator.geolocation.watchPosition((position) => {
-      var lastPosition = JSON.stringify(position);
+      // var lastPosition = JSON.stringify(position);
+      alert(position.latitude);
 
-      this.setState({center: {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      }});
+      this.setState({
+        center: {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+      });
     });
 
     // axios
