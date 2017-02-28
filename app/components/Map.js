@@ -34,8 +34,6 @@ export default class Map extends Component {
   }
 
   render() {
-    const { region } = this.props;
-
     return (
       <View style={styles.container}>
         <MapView
