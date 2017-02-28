@@ -4,10 +4,15 @@ import {
   Text,
   StyleSheet,
   View,
+  Button
 } from 'react-native';
 import MapView from 'react-native-maps';
 import Control from './Control';
 import axios from 'axios';
+import EntypoIcons from 'react-native-vector-icons/Entypo';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import IonIcons from 'react-native-vector-icons/Ionicons';
+import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +21,129 @@ const styles = StyleSheet.create({
   map: {
     flex: 1
   },
+  marker: {
+    backgroundColor: '#FF2413',
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 10,
+    borderRadius: 50
+  },
+  person: {
+    backgroundColor: '#397AFF',
+    padding: 8,
+    borderRadius: 50
+  },
+  callout: {
+    width: 250,
+    height: 125,
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  calloutTitle: {
+    fontSize: 25,
+    color: 'black'
+  },
+  people: {
+    fontSize: 20,
+    color: 'black'
+  },
+  peopleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  category: {
+    fontSize: 20
+  },
+  eye: {
+    fontSize: 20
+  },
+  calloutContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  calloutBtn: {
+    width: 150,
+    backgroundColor: '#B113FF',
+    justifyContent: 'center',
+    flexDirection: 'row'
+  },
+  calloutBtnText: {
+    color: 'white',
+    fontSize: 25
+  },
+  trafficIconContainer: {
+    backgroundColor: '#FFD037',
+    borderRadius: 50,
+    padding: 4,
+    borderWidth: 2,
+    borderColor: 'black'
+  },
+  trafficIcon: {
+    fontSize: 30,
+    color: 'black'
+  },
+  constructionIconContainer: {
+    backgroundColor: '#FF3D31',
+    borderRadius: 50,
+    padding: 4,
+    borderWidth: 2,
+    borderColor: 'black'
+  },
+  constructionIcon: {
+    fontSize: 30,
+    color: 'white'
+  },
+  bikingIconContainer: {
+    backgroundColor: '#25FF59',
+    borderRadius: 50,
+    padding: 4,
+    borderWidth: 2,
+    borderColor: 'black'
+  },
+  bikingIcon: {
+    fontSize: 30,
+    color: 'black'
+  },
+  trashIconContainer: {
+    backgroundColor: '#854700',
+    borderRadius: 50,
+    padding: 4,
+    borderWidth: 2,
+    borderColor: 'black'
+  },
+  trashIcon: {
+    fontSize: 25,
+    color: 'white'
+  }
 });
+
+const TrafficIcon = (
+  <View style={styles.trafficIconContainer}>
+    <MaterialIcons name="traffic" style={styles.trafficIcon} />
+  </View>
+);
+const ConstructionIcon = (
+  <View style={styles.constructionIconContainer}>
+    <IonIcons name="ios-hammer" style={styles.constructionIcon} />
+  </View>
+);
+const BikingIcon = (
+  <View style={styles.bikingIconContainer}>
+    <MaterialIcons name="directions-bike" style={styles.bikingIcon}/>
+  </View>
+);
+const TrashIcon = (
+  <View style={styles.trashIconContainer}>
+    <FontAwesomeIcons name="trash-o" style={styles.trashIcon}/>
+  </View>
+);
+
+const categories = {
+  traffic: TrafficIcon,
+  construction: ConstructionIcon,
+  biking: BikingIcon,
+  garbage: TrashIcon
+}
 
 export default class Map extends Component {
   constructor(props) {
@@ -24,13 +151,18 @@ export default class Map extends Component {
 
     this.state = {
       center: {
-        lat: 47.5992,
+        lat: 47.5993,
         lng: -122.334
       },
-      markers: [{id: 1, lat: 37.78825, lng: -122.4324}]
+      markers: [{id: 1, lat: 47.5996, lng: -122.337, title: 'Major Erosion', people: '1246', category: 'garbage'}]
     }
 
     this.watchId = null;
+    this.toProblem = this.toProblem.bind(this);
+  }
+
+  toProblem() {
+    alert('works')
   }
 
   render() {
@@ -41,12 +173,21 @@ export default class Map extends Component {
           region={{
             latitude: this.state.center.lat,
             longitude: this.state.center.lng,
-            latitudeDelta: 0.02,
-            longitudeDelta: 0.02,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005,
           }}
        >
          {
-           this.state.markers.map(marker => (
+           this.state.markers
+             .map(marker => {
+               for (const category in categories) {
+                 if (category === marker.category) {
+                   marker.icon = categories[category];
+                 }
+               }
+               return marker;
+             })
+             .map(marker => (
              <MapView.Marker
                key={marker.id}
                coordinate={
@@ -55,9 +196,33 @@ export default class Map extends Component {
                    longitude: marker.lng
                  }
                }
-             />
+             >
+               {/* <View style={styles.marker}></View> */}
+                 {marker.icon}
+               <MapView.Callout style={styles.callout}>
+                 <Text style={styles.calloutTitle}>{marker.title}</Text>
+                 <View style={styles.calloutContainer}>
+                   <View style={styles.peopleContainer}>
+                     <EntypoIcons name="eye" style={styles.eye}/>
+                     <Text style={styles.people}>{marker.people}</Text>
+                   </View>
+                   <Text style={styles.category}>Category</Text>
+                 </View>
+                 <Button title="View" color="#B113FF"/>
+               </MapView.Callout>
+             </MapView.Marker>
            ))
          }
+        <MapView.Marker
+          coordinate={
+            {
+              latitude: this.state.center.lat,
+              longitude: this.state.center.lng
+            }
+          }
+        >
+          <View style={styles.person}></View>
+        </MapView.Marker>
        </MapView>
 
        <Control
@@ -80,7 +245,7 @@ export default class Map extends Component {
           }
         });
       },
-      (error) => alert('NOT WORKING'),
+      (error) => console.log(error),
       {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
     );
   }
