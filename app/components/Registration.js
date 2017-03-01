@@ -23,12 +23,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   appNameText: {
-    color: '#fff',
+    color: '#403d3d',
     fontSize: 50,
     textAlign: 'center'
   },
   welcomeText: {
-    color: '#fff',
+    color: '#403d3d',
     fontSize: 20,
     textAlign: 'center'
   },
