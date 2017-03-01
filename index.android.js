@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  Text,
+  Navigator,
   StyleSheet,
-  View,
-  Navigator
+  Text,
+  View
 } from 'react-native';
 import Map from './app/components/Map';
 import Control from './app/components/Control';

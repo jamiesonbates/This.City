@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   Button,
+  Image,
   StyleSheet,
   Text,
   TextInput,
@@ -13,20 +14,23 @@ import IconStyle2 from 'react-native-vector-icons/MaterialIcons';
 import IconStyle3 from 'react-native-vector-icons/Entypo';
 
 const styles = StyleSheet.create({
-  welcomeContainer: {
-    alignItems: 'center',
-    backgroundColor: '#769ee2',
-    flexDirection: 'column',
+  pageContainer: {
+    flex: 1,
+    width: null,
+    height: null,
+    backgroundColor:'transparent',
     justifyContent: 'center',
-    height: 80
+    alignItems: 'center',
   },
   appNameText: {
     color: '#fff',
-    fontSize: 30
+    fontSize: 50,
+    textAlign: 'center'
   },
   welcomeText: {
     color: '#fff',
-    fontSize: 14
+    fontSize: 20,
+    textAlign: 'center'
   },
   formContainer: {
     alignItems: 'center',
@@ -87,62 +91,65 @@ export default class Registration extends Component {
   }
 
   render() {
-    return <View>
-
-      <View style={styles.welcomeContainer}>
+    return <Image
+      source={require('../images/bg.jpg')}
+      style={styles.pageContainer}
+      title="Created by Kjpargeter - Freepik.com"
+    >
+      <View>
         <Text style={styles.appNameText}>
           APP NAME
         </Text>
         <Text style={styles.welcomeText}>
           Report. Review. Revamp.
         </Text>
+
+        <View style={styles.formContainer}>
+
+            <View style={{ flexDirection: 'row' }}>{userIcon}<Text style={styles.inputLabel}>Username</Text></View>
+            <TextInput
+              name="username"
+              style={styles.inputField}
+              onChangeText={(username) => this.setState({username})}
+              value={this.state.username}
+            />
+
+            <View style={{ flexDirection: 'row' }}>{emailIcon}<Text style={styles.inputLabel}>Email</Text></View>
+            <TextInput
+              name="email"
+              style={styles.inputField}
+              onChangeText={(email) => this.setState({email})}
+              value={this.state.email}
+            />
+
+            <View style={{ flexDirection: 'row' }}>{passwordIcon}<Text style={styles.inputLabel}>Password</Text></View>
+            <TextInput
+              name="password"
+              onChangeText={(password) => this.setState({password})}
+              secureTextEntry={true}
+              style={styles.inputField}
+              value={this.state.password}
+            />
+
+            <View style={{ flexDirection: 'row' }}>{addressIcon}<Text style={styles.inputLabel}>Address</Text></View>
+            <TextInput
+              name="address"
+              style={styles.inputField}
+              onChangeText={(address) => this.setState({address})}
+              value={this.state.address}
+            />
+
+            <View style={{ height: 10 }}></View>
+
+            <Button
+              color="#517cc6"
+              onPress={this.handleSubmit}
+              style={styles.submitButton}
+              title="Create Account"
+            />
+        </View>
       </View>
-
-      <View style={styles.formContainer}>
-
-          <View style={{ flexDirection: 'row' }}>{userIcon}<Text style={styles.inputLabel}>Username</Text></View>
-          <TextInput
-            name="username"
-            style={styles.inputField}
-            onChangeText={(username) => this.setState({username})}
-            value={this.state.username}
-          />
-
-          <View style={{ flexDirection: 'row' }}>{emailIcon}<Text style={styles.inputLabel}>Email</Text></View>
-          <TextInput
-            name="email"
-            style={styles.inputField}
-            onChangeText={(email) => this.setState({email})}
-            value={this.state.email}
-          />
-
-          <View style={{ flexDirection: 'row' }}>{passwordIcon}<Text style={styles.inputLabel}>Password</Text></View>
-          <TextInput
-            name="password"
-            onChangeText={(password) => this.setState({password})}
-            secureTextEntry={true}
-            style={styles.inputField}
-            value={this.state.password}
-          />
-
-          <View style={{ flexDirection: 'row' }}>{addressIcon}<Text style={styles.inputLabel}>Address</Text></View>
-          <TextInput
-            name="address"
-            style={styles.inputField}
-            onChangeText={(address) => this.setState({address})}
-            value={this.state.address}
-          />
-
-          <View style={{ height: 10 }}></View>
-
-          <Button
-            color="#517cc6"
-            onPress={this.handleSubmit}
-            style={styles.submitButton}
-            title="Create Account"
-          />
-      </View>
-    </View>
+    </Image>
   }
 }
 

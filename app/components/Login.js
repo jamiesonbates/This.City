@@ -13,20 +13,24 @@ import axios from 'axios';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 const styles = StyleSheet.create({
-  heroContainer: {
-    flexDirection: 'column',
-    height: 200,
-    marginBottom: 25
-  },
-  heroImage: {
+  pageContainer: {
     flex: 1,
-    height: null,
-    resizeMode: 'cover',
-    width: null
-  },
-  formContainer: {
-    alignItems: 'center',
     flexDirection: 'column',
+    width: null,
+    height: null,
+    backgroundColor:'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  appNameText: {
+    color: '#403d3d',
+    fontSize: 70,
+    textAlign: 'center'
+  },
+  welcomeText: {
+    color: '#403d3d',
+    fontSize: 30,
+    textAlign: 'center'
   },
   icon: {
     paddingRight: 15,
@@ -47,6 +51,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 30,
     width: 300
+  },
+  formContainer: {
+    marginTop: 50
   },
   registerLink: {
     color: 'lightcoral',
@@ -105,10 +112,17 @@ export default class Login extends Component {
   }
 
   render() {
-    return <View style={{ flexDirection: 'column' }}>
-      <View style={styles.heroContainer}>
-        <Image style={styles.heroImage} source={require('../images/hero.jpg')} />
-      </View>
+    return <Image
+      source={require('../images/bg.jpg')}
+      style={styles.pageContainer}
+      title="Created by Kjpargeter - Freepik.com"
+    >
+      <Text style={styles.appNameText}>
+        APP NAME
+      </Text>
+      <Text style={styles.welcomeText}>
+        Report. Review. Revamp.
+      </Text>
 
       <View style={styles.formContainer}>
         <View style={styles.inputRow}>
@@ -132,7 +146,7 @@ export default class Login extends Component {
           />
         </View>
 
-        <View style={{ marginTop: 25 }}></View>
+        <View style={{ height: 10 }}></View>
 
         <Button
           color="#517cc6"
@@ -147,8 +161,7 @@ export default class Login extends Component {
             <Text style={styles.registerLink}> Register for free.</Text>
           </TouchableHighlight>
         </View>
-
       </View>
-    </View>
+    </Image>
   }
 }
