@@ -4,10 +4,12 @@ import {
   Text,
   StyleSheet,
   View,
-  Button
+  Button,
+  Modal
 } from 'react-native';
 import MapView from 'react-native-maps';
 import Control from './Control';
+import Problem from './Problem';
 import axios from 'axios';
 import EntypoIcons from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -247,16 +249,34 @@ export default class Map extends Component {
         lat: 47.5993,
         lng: -122.334
       },
-      problems: []
+      problems: [],
+      problemModalOpen: false
     }
 
     this.watchId = null;
     this.handleViewProblem = this.handleViewProblem.bind(this);
     this.updateMap = this.updateMap.bind(this);
+    this.toggleProblem = this.toggleProblem.bind(this);
+  }
+
+  toggleProblem() {
+    if (this.state.problemModalOpen) {
+      this.setState({ problemModalOpen: false });
+    }
+    else {
+      this.setState({ problemModalOpen: true });
+    }
   }
 
   handleViewProblem(currentProblem) {
+    alert('modal?');
     this.props.saveCurrentProblem(currentProblem);
+
+    this.setState({ problemModalOpen: true });
+  }
+
+  viewProblem() {
+    this.props.navigator('')
   }
 
   updateMap() {
@@ -285,6 +305,16 @@ export default class Map extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Modal
+          animationType={"slide"}
+          onRequestClose={this.toggleProblem}
+          visible={this.state.problemModalOpen}
+        >
+          <Problem
+            currentProblem={this.props.currentProblem}
+            userInfo={this.props.userInfo}
+          />
+        </Modal>
         <MapView
           style={styles.map}
           region={{
@@ -314,9 +344,11 @@ export default class Map extends Component {
                  }
                }
              >
-               {/* <View style={styles.marker}></View> */}
                  {marker.icon}
-               <MapView.Callout style={styles.callout}>
+               <MapView.Callout
+                 style={styles.callout}
+                 onPress={() => this.handleViewProblem(marker)}
+               >
                  <Text style={styles.calloutTitle}>{marker.title}</Text>
                  <View style={styles.calloutContainer}>
                    <View style={styles.peopleContainer}>
@@ -325,11 +357,11 @@ export default class Map extends Component {
                    </View>
                    <Text style={styles.category}>{marker.category}</Text>
                  </View>
-                 <Button
+                 {/* <Button
                    color="#B113FF"
-                   onPress={() => this.handleViewProblem(marker)}
+                  //  onPress={() => this.handleViewProblem(marker)}
                    title="View"
-                 />
+                 /> */}
                </MapView.Callout>
              </MapView.Marker>
            ))

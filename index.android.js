@@ -55,7 +55,9 @@ export default class Q3ProjectFE extends Component {
         return <Map
           userInfo={this.state.userInfo}
           saveCurrentProblem={this.saveCurrentProblem}
-          navigator={navigator} />
+          currentProblem={this.state.currentProblem}
+          navigator={navigator}
+        />
       // case 'report':
       //   return <Report />
       case 'problem':
