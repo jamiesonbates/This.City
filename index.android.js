@@ -72,7 +72,7 @@ export default class Q3ProjectFE extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{name: 'login'}}
+        initialRoute={{name: 'registration'}}
         renderScene={this.renderScene.bind(this)}
       />
     );

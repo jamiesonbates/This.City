@@ -44,11 +44,17 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   inputField: {
+    borderWidth: 3,
+    borderLeftColor: 'rgba(0, 0, 0, 0)',
+    borderRightColor: 'rgba(0, 0, 0, 0)',
+    borderTopColor: 'rgba(0, 0, 0, 0)',
     fontSize: 17,
-    height: 50,
+    height: 40,
+    marginTop: 5,
     marginLeft: 10,
     marginBottom: 30,
-    width: 290
+    textAlign: 'center',
+    width: 230
   }
 });
 
