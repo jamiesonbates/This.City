@@ -136,6 +136,17 @@ const styles = StyleSheet.create({
   dangerIcon: {
     fontSize: 25,
     color: 'black'
+  },
+  brokenIconContainer: {
+    backgroundColor: 'black',
+    borderRadius: 50,
+    padding: 5,
+    borderWidth: 2,
+    borderColor: 'white'
+  },
+  brokenIcon: {
+    fontSize: 25,
+    color: 'white'
   }
 });
 
@@ -175,13 +186,28 @@ const DangerIcon = (
   </View>
 );
 
+const BrokenIcon = (
+  <View style={styles.brokenIconContainer}>
+    <FontAwesomeIcons name="chain-broken" style={styles.brokenIcon} />
+  </View>
+)
+
+// const TheftIcon = (
+//
+// )
+//
+// const OtherIcon = (
+//
+// )
+
 const categories = {
   traffic: TrafficIcon,
   construction: ConstructionIcon,
   biking: BikingIcon,
   garbage: TrashIcon,
   noise: NoiseIcon,
-  danger: DangerIcon
+  danger: DangerIcon,
+  broken: BrokenIcon
 }
 
 export default class Map extends Component {
@@ -193,7 +219,7 @@ export default class Map extends Component {
         lat: 47.5993,
         lng: -122.334
       },
-      markers: [{id: 1, lat: 47.5996, lng: -122.337, title: 'Major Erosion', people: '1246', category: 'danger'}]
+      markers: [{id: 1, lat: 47.5996, lng: -122.337, title: 'Major Erosion', people: '1246', category: 'broken'}]
     }
 
     this.watchId = null;
