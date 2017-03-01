@@ -26,16 +26,10 @@ export default class MiniMap extends Component {
         lng: this.props.currentLocation.lng
       },
       marker: {
-        latitude: this.props.currentLocation.lat,
-        longitude: this.props.currentLocation.lng
+        latitude: this.props.marker.latitude,
+        longitude: this.props.marker.longitude
       }
     };
-
-    this.dragIt = this.dragIt.bind(this);
-  }
-
-  dragIt(event) {
-    this.setState({ marker: event.nativeEvent.coordinate });
   }
 
   render() {
@@ -56,7 +50,7 @@ export default class MiniMap extends Component {
          <MapView.Marker
           draggable
           coordinate={this.state.marker}
-          onDrag={(e) => {this.dragIt(e)}}
+          onDrag={(e) => {this.props.dragMarker(e)}}
          >
          </MapView.Marker>
        </MapView>
