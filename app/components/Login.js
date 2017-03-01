@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
   appNameText: {
     color: '#403d3d',
     fontFamily: 'raleway_regular',
-    fontSize: 70,
+    fontSize: 60,
     textAlign: 'center'
   },
   welcomeText: {
     color: '#403d3d',
     fontFamily: 'raleway_regular',
-    fontSize: 30,
+    fontSize: 26,
     textAlign: 'center'
   },
   icon: {
@@ -160,7 +160,7 @@ export default class Login extends Component {
         />
 
         <View style={styles.linkBox}>
-          <Text style={{ color: '#393836', fontSize: 18 }}>Not a member?</Text>
+          <Text style={{ color: '#393836', fontFamily: 'raleway_regular', fontSize: 18 }}>Not a member?</Text>
           <TouchableHighlight onPress={() => this.navigate('registration')}>
             <Text style={styles.registerLink}> Register for free.</Text>
           </TouchableHighlight>
