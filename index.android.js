@@ -24,15 +24,23 @@ export default class Q3ProjectFE extends Component {
       userInfo: {
         id: null,
         token: null
-      }
+      },
+      currentProblem: {}
     };
 
     this.getUserInfo = this.getUserInfo.bind(this);
+    this.saveCurrentProblem = this.saveCurrentProblem.bind(this);
   }
 
   getUserInfo(nextState) {
     this.setState(nextState);
     alert(this.state.userInfo.id)
+  }
+
+  saveCurrentProblem(currentProblem) {
+    this.setState({
+      currentProblem
+    });
   }
 
   renderScene(route, navigator) {
@@ -45,7 +53,10 @@ export default class Q3ProjectFE extends Component {
       case 'registration':
         return <Registration navigator={navigator} />
       case 'map':
-        return <Map userInfo={this.state.userInfo} navigator={navigator} />
+        return <Map
+          userInfo={this.state.userInfo}
+          saveCurrentProblem={this.saveCurrentProblem}
+          navigator={navigator} />
       // case 'report':
       //   return <Report />
       case 'problem':

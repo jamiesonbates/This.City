@@ -252,10 +252,15 @@ export default class Map extends Component {
 
     this.watchId = null;
     this.toProblem = this.toProblem.bind(this);
+    this.handleViewProblem = this.handleViewProblem.bind(this);
   }
 
   toProblem() {
     alert('works')
+  }
+
+  handleViewProblem(currentProblem) {
+    this.props.saveCurrentProblem(currentProblem);
   }
 
   render() {
@@ -301,7 +306,11 @@ export default class Map extends Component {
                    </View>
                    <Text style={styles.category}>Category</Text>
                  </View>
-                 <Button title="View" color="#B113FF"/>
+                 <Button
+                   color="#B113FF"
+                   onPress={() => this.handleViewProblem(marker)}
+                   title="View"
+                 />
                </MapView.Callout>
              </MapView.Marker>
            ))

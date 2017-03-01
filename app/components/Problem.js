@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
   problem: {
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  issueName: {
+    fontFamily: 'raleway_regular'
   }
 });
 
@@ -18,7 +21,11 @@ class Problem extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Issue Name</Text>
+
+        <View style={styles.header}>
+          <Text style={styles.issueName}>Issue Name</Text>
+          <Text>Category Icon</Text>
+        </View>
         <Text>Description</Text>
         <Text>Author</Text>
         <Text>Photos</Text>

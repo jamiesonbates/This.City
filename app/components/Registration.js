@@ -75,6 +75,7 @@ export default class Registration extends Component {
       password: '',
       email: '',
       address: '',
+      loggedIn: false
     };
 
     this.navigate = this.navigate.bind(this);
@@ -86,8 +87,16 @@ export default class Registration extends Component {
   }
 
   handleSubmit() {
-    console.error(this.state);
-    // callApi(this.state);
+    axios
+      .post('https://q3project-server.herokuapp.com/api/users', this.state)
+      .then((res) => {
+        if (res.data.id) {
+          this.navigate('map');
+        }
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
   }
 
   render() {
@@ -151,15 +160,4 @@ export default class Registration extends Component {
       </View>
     </Image>
   }
-}
-
-function callApi(userInfo) {
-  axios
-    .post('https://q3project-server.herokuapp.com/api/users', userInfo)
-    .then((res) => {
-
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
 }
