@@ -247,7 +247,7 @@ export default class Map extends Component {
         lat: 47.5993,
         lng: -122.334
       },
-      markers: [{id: 1, lat: 47.5996, lng: -122.337, title: 'Major Erosion', people: '1246', category: 'other'}]
+      problems: []
     }
 
     this.watchId = null;
@@ -276,7 +276,7 @@ export default class Map extends Component {
           }}
        >
          {
-           this.state.markers
+           this.state.problems
              .map(marker => {
                for (const category in categories) {
                  if (category === marker.category) {
@@ -315,6 +315,7 @@ export default class Map extends Component {
              </MapView.Marker>
            ))
          }
+
         <MapView.Marker
           coordinate={
             {
@@ -339,7 +340,6 @@ export default class Map extends Component {
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        // const initialPosition = JSON.stringify(position);
         this.setState({
           center: {
             lat: position.coords.latitude,
@@ -347,18 +347,35 @@ export default class Map extends Component {
           }
         });
       },
-      (error) => console.log(error),
+      (error) => console.error(error),
       {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
     );
+
+    axios({
+      method: 'post',
+      url: 'https://q3project-server.herokuapp.com/api/markers',
+      data: {
+        lat: this.state.center.lat,
+        lng: this.state.center.lng
+      }
+    })
+    .then((res) => {
+      const markers = res.data;
+
+      this.setState({
+        problems: markers
+      });
+
+      // console.error(this.state);
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
   }
 
   componentDidMount() {
-
-
     this.watchID = navigator.geolocation.watchPosition((position) => {
-      // var lastPosition = JSON.stringify(position);
       alert(position.latitude);
-
       this.setState({
         center: {
           lat: position.coords.latitude,
@@ -366,24 +383,6 @@ export default class Map extends Component {
         }
       });
     });
-
-    // axios
-    //   .get('https://q3project-server.herokuapp.com/api/markers', {
-    //     lat: this.state.center.lat,
-    //     lng: this.state.center.lng
-    //   })
-    //   .then((res) => {
-    //     const markers = res.data;
-    //
-    //     this.setState({
-    //       markers: markers
-    //     });
-    //
-    //     alert(markers);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err.message);
-    //   });
   }
 
   componentWillUnmount() {
