@@ -24,11 +24,13 @@ const styles = StyleSheet.create({
   },
   appNameText: {
     color: '#403d3d',
+    fontFamily: 'raleway_regular',
     fontSize: 70,
     textAlign: 'center'
   },
   welcomeText: {
     color: '#403d3d',
+    fontFamily: 'raleway_regular',
     fontSize: 30,
     textAlign: 'center'
   },
@@ -36,6 +38,7 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   },
   inputField: {
+    fontFamily: 'raleway_regular',
     fontSize: 17,
     height: 50,
     width: 270
@@ -57,6 +60,7 @@ const styles = StyleSheet.create({
   },
   registerLink: {
     color: 'lightcoral',
+    fontFamily: 'raleway_regular',
     fontSize: 18,
   }
 });
