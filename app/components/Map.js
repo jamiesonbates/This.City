@@ -158,6 +158,17 @@ const styles = StyleSheet.create({
   theftIcon: {
     fontSize: 25,
     color: 'black'
+  },
+  otherIconContainer: {
+    backgroundColor: '#FFE3A7',
+    borderRadius: 50,
+    padding: 5,
+    borderWidth: 2,
+    borderColor: 'white'
+  },
+  otherIcon: {
+    fontSize: 25,
+    color: 'black'
   }
 });
 
@@ -208,10 +219,12 @@ const TheftIcon = (
     <EntypoIcons name="lock-open" style={styles.theftIcon} />
   </View>
 );
-//
-// const OtherIcon = (
-//
-// )
+
+const OtherIcon = (
+  <View style={styles.otherIconContainer}>
+    <EntypoIcons name="infinity" style={styles.otherIcon} />
+  </View>
+)
 
 const categories = {
   traffic: TrafficIcon,
@@ -221,7 +234,8 @@ const categories = {
   noise: NoiseIcon,
   danger: DangerIcon,
   broken: BrokenIcon,
-  theft: TheftIcon
+  theft: TheftIcon,
+  other: OtherIcon
 }
 
 export default class Map extends Component {
@@ -233,7 +247,7 @@ export default class Map extends Component {
         lat: 47.5993,
         lng: -122.334
       },
-      markers: [{id: 1, lat: 47.5996, lng: -122.337, title: 'Major Erosion', people: '1246', category: 'theft'}]
+      markers: [{id: 1, lat: 47.5996, lng: -122.337, title: 'Major Erosion', people: '1246', category: 'other'}]
     }
 
     this.watchId = null;
