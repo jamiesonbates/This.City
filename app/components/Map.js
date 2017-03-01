@@ -256,13 +256,23 @@ export default class Map extends Component {
     this.watchId = null;
     this.handleViewProblem = this.handleViewProblem.bind(this);
     this.updateMap = this.updateMap.bind(this);
+    this.toggleProblem = this.toggleProblem.bind(this);
+  }
+
+  toggleProblem() {
+    if (this.state.problemModalOpen) {
+      this.setState({ problemModalOpen: false });
+    }
+    else {
+      this.setState({ problemModalOpen: true });
+    }
   }
 
   handleViewProblem(currentProblem) {
+    alert('modal?');
     this.props.saveCurrentProblem(currentProblem);
-    const nextProblemModalOpen = true;
 
-    this.setState({ problemModalOpen: nextProblemModalOpen });
+    this.setState({ problemModalOpen: true });
   }
 
   viewProblem() {
@@ -297,7 +307,7 @@ export default class Map extends Component {
       <View style={styles.container}>
         <Modal
           animationType={"slide"}
-          onRequestClose={this.toggleReport}
+          onRequestClose={this.toggleProblem}
           visible={this.state.problemModalOpen}
         >
           <Problem
@@ -334,12 +344,11 @@ export default class Map extends Component {
                  }
                }
              >
-               {/* <View style={styles.marker}></View> */}
                  {marker.icon}
                <MapView.Callout
                  style={styles.callout}
-                //  onPress={() => this.handleViewProblem(marker)}
-                >
+                 onPress={() => this.handleViewProblem(marker)}
+               >
                  <Text style={styles.calloutTitle}>{marker.title}</Text>
                  <View style={styles.calloutContainer}>
                    <View style={styles.peopleContainer}>
@@ -348,11 +357,11 @@ export default class Map extends Component {
                    </View>
                    <Text style={styles.category}>{marker.category}</Text>
                  </View>
-                 <Button
+                 {/* <Button
                    color="#B113FF"
-                   onPress={() => this.handleViewProblem(marker)}
+                  //  onPress={() => this.handleViewProblem(marker)}
                    title="View"
-                 />
+                 /> */}
                </MapView.Callout>
              </MapView.Marker>
            ))
