@@ -321,9 +321,9 @@ export default class Map extends Component {
                  <View style={styles.calloutContainer}>
                    <View style={styles.peopleContainer}>
                      <EntypoIcons name="eye" style={styles.eye}/>
-                     <Text style={styles.people}>{marker.people}</Text>
+                     <Text style={styles.people}>5</Text>
                    </View>
-                   <Text style={styles.category}>Category</Text>
+                   <Text style={styles.category}>{marker.category}</Text>
                  </View>
                  <Button
                    color="#B113FF"
