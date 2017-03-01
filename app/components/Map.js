@@ -125,6 +125,17 @@ const styles = StyleSheet.create({
   noiseIcon: {
     fontSize: 25,
     color: 'black'
+  },
+  dangerIconContainer: {
+    backgroundColor: '#FF3E00',
+    borderRadius: 50,
+    padding: 5,
+    borderWidth: 2,
+    borderColor: 'black'
+  },
+  dangerIcon: {
+    fontSize: 25,
+    color: 'black'
   }
 });
 
@@ -160,7 +171,7 @@ const NoiseIcon = (
 
 const DangerIcon = (
   <View style={styles.dangerIconContainer}>
-
+    <FontAwesomeIcons name="exclamation" style={styles.dangerIcon} />
   </View>
 );
 
@@ -169,7 +180,8 @@ const categories = {
   construction: ConstructionIcon,
   biking: BikingIcon,
   garbage: TrashIcon,
-  noise: NoiseIcon
+  noise: NoiseIcon,
+  danger: DangerIcon
 }
 
 export default class Map extends Component {
@@ -181,7 +193,7 @@ export default class Map extends Component {
         lat: 47.5993,
         lng: -122.334
       },
-      markers: [{id: 1, lat: 47.5996, lng: -122.337, title: 'Major Erosion', people: '1246', category: 'trash'}]
+      markers: [{id: 1, lat: 47.5996, lng: -122.337, title: 'Major Erosion', people: '1246', category: 'danger'}]
     }
 
     this.watchId = null;
