@@ -61,6 +61,7 @@ export default class Q3ProjectFE extends Component {
     return (
       <Navigator
         initialRoute={{name: 'map'}}
+        renderScene={this.renderScene.bind(this)}
       />
     );
   }
