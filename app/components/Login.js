@@ -10,7 +10,9 @@ import {
   View
 } from 'react-native';
 import axios from 'axios';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import { Kohana } from 'react-native-textinput-effects';
+import MaterialsIcon from 'react-native-vector-icons/MaterialIcons';
+import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 const styles = StyleSheet.create({
   pageContainer: {
@@ -65,8 +67,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const userIcon = (<Icon name="user" size={20} color="black" style={styles.icon}/>);
-const passwordIcon = (<Icon name="key" size={20} color="black" style={styles.icon}/>);
+const userIcon = (<SimpleLineIcon name="user" size={20} color="black" style={styles.icon} />);
+const passwordIcon = (<SimpleLineIcon name="key" size={20} color="black" style={styles.icon} />);
 
 export default class Login extends Component {
   constructor(props) {
@@ -130,13 +132,25 @@ export default class Login extends Component {
 
       <View style={styles.formContainer}>
         <View style={styles.inputRow}>
-          {userIcon}
+          <Kohana
+            style={{ backgroundColor: '#f9f5ed' }}
+            label={'Line'}
+            iconClass={MaterialsIcon}
+            iconName={'email'}
+            iconColor={'#f4d29a'}
+            labelStyle={{ color: '#91627b' }}
+            inputStyle={{ color: '#91627b' }}
+            name="email"
+            onChangeText={(email) => this.setState({email})}
+            value={this.state.email}
+          />
+          {/* {userIcon}
           <TextInput
             name="email"
             style={styles.inputField}
             onChangeText={(email) => this.setState({email})}
             value={this.state.email}
-          />
+          /> */}
         </View>
 
         <View style={styles.inputRow}>
