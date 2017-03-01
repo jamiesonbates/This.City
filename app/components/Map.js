@@ -152,6 +152,18 @@ const TrashIcon = (
   </View>
 );
 
+const NoiseIcon = (
+  <View style={styles.noiseIconContainer}>
+    <FontAwesomeIcons name="volume-up" style={styles.noiseIcon} />
+  </View>
+);
+
+const DangerIcon = (
+  <View style={styles.dangerIconContainer}>
+
+  </View>
+);
+
 const categories = {
   traffic: TrafficIcon,
   construction: ConstructionIcon,
