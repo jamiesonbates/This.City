@@ -18,17 +18,24 @@ const styles = StyleSheet.create({
 });
 
 class Problem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentProblem: this.props.currentProblem
+    };
+  }
   render() {
     return (
       <View style={styles.container}>
 
         <View style={styles.header}>
-          <Text style={styles.issueName}>Issue Name</Text>
-          <Text>Category Icon</Text>
+          <Text style={styles.issueName}>{this.state.currentProblem.title}</Text>
         </View>
-        <Text>Description</Text>
-        <Text>Author</Text>
-        <Text>Photos</Text>
+
+        <Text>{this.state.currentProblem.description}</Text>
+        <Text>{this.state.currentProblem.username}</Text>
+
         <View>
           <Text>Is this a problem?</Text>
           <View style={styles.problem}>
@@ -40,9 +47,9 @@ class Problem extends Component {
             />
           </View>
         </View>
-        <Button
+        {/* <Button
           title="Comments"
-        />
+        /> */}
       </View>
     );
   }

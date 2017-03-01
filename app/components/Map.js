@@ -269,7 +269,6 @@ export default class Map extends Component {
   }
 
   handleViewProblem(currentProblem) {
-    alert('modal?');
     this.props.saveCurrentProblem(currentProblem);
 
     this.setState({ problemModalOpen: true });
@@ -294,8 +293,6 @@ export default class Map extends Component {
       this.setState({
         problems: markers
       });
-
-      // console.error(this.state);
     })
     .catch((err) => {
       console.error(err.message);
