@@ -38,8 +38,8 @@ class Report extends Component {
       description: '',
       category_id: 1,
       user_id: this.props.userInfo.id,
-      lat: null,
-      lng: null,
+      lat: this.props.currentLocation.lat,
+      lng: this.props.currentLocation.lng,
       categories: [
         {id: 1, name: 'Other'},
         {id: 2, name: 'Construction'},
@@ -50,11 +50,12 @@ class Report extends Component {
         {id: 7, name: 'Broken'},
         {id: 8, name: 'Theft'},
         {id: 9, name: 'Traffic'}
-      ],
-      marker: {
-        latitude: this.props.currentLocation.lat,
-        longitude: this.props.currentLocation.lng
-      }
+      ]
+      // ,
+      // marker: {
+      //   latitude: this.props.currentLocation.lat,
+      //   longitude: this.props.currentLocation.lng
+      // }
     };
 
     this.navigate = this.navigate.bind(this);
@@ -62,7 +63,7 @@ class Report extends Component {
   }
 
   dragMarker(event) {
-    this.setState({ marker: event.nativeEvent.coordinate });
+    this.setState({ lat: event.nativeEvent.coordinate.latitude, lng: event.nativeEvent.coordinate.longitude });
   }
 
   navigate(routeName) {
@@ -108,8 +109,10 @@ class Report extends Component {
 
         <View style={{flex: 1, flexDirection: 'row'}}>
           <MiniMap
-            currentLocation={this.props.currentLocation} marker={this.props.marker}
+            currentLocation={this.props.currentLocation}
             dragMarker={this.dragMarker}
+            markerLat={this.state.lat}
+            markerLng={this.state.lng}
           />
         </View>
 
