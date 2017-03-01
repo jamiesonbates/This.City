@@ -52,6 +52,8 @@ class Control extends Component {
         >
           <Report
             currentLocation={this.props.currentLocation} navigator={this.props.nav}
+            toggleReport={this.toggleReport}
+            updateMap={this.props.updateMap}
             userInfo={this.props.userInfo}
           />
         </Modal>

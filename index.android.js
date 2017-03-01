@@ -34,7 +34,6 @@ export default class Q3ProjectFE extends Component {
 
   getUserInfo(nextState) {
     this.setState(nextState);
-    alert(this.state.userInfo.id)
   }
 
   saveCurrentProblem(currentProblem) {

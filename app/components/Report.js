@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Picker, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import axios from 'axios';
 import MiniMap from './MiniMap';
 
 const styles = StyleSheet.create({
@@ -51,15 +52,11 @@ class Report extends Component {
         {id: 8, name: 'Theft'},
         {id: 9, name: 'Traffic'}
       ]
-      // ,
-      // marker: {
-      //   latitude: this.props.currentLocation.lat,
-      //   longitude: this.props.currentLocation.lng
-      // }
     };
 
     this.navigate = this.navigate.bind(this);
     this.dragMarker = this.dragMarker.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   dragMarker(event) {
@@ -68,6 +65,23 @@ class Report extends Component {
 
   navigate(routeName) {
     this.props.navigator.push({ name: routeName })
+  }
+
+  handleSubmit() {
+    const problem = this.state;
+    delete problem.categories;
+
+    axios
+      .post('https://q3project-server.herokuapp.com/api/problem', problem)
+      .then((res) => {
+        if (res.data) {
+          this.props.updateMap();
+          this.props.toggleReport();
+        }
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
   }
 
   render() {
@@ -116,36 +130,12 @@ class Report extends Component {
           />
         </View>
 
-        <View style={styles.views}>
-          <Text>Location</Text>
-          <Button
-            title="Edit"
-            onPress={() => console.error(this.state)}
-          />
-        </View>
+        <Button
+          color="#517cc6"
+          onPress={() => this.handleSubmit()}
+          title="Report"
+        />
 
-        <View style={styles.views}>
-          <Text>Add Photo</Text>
-          <Button
-            title="Photo"
-            onPress={() => this.navigate('map')}
-          />
-        </View>
-
-        <View style={styles.views}>
-          <Text>Enter Tag</Text>
-          <TextInput
-            value={this.state.tag}
-            style={styles.textInputs}
-          />
-        </View>
-
-        <TouchableHighlight
-          style={styles.submitButton}
-          onPress={() => this.navigate('map')}
-        >
-          <Text>Submit</Text>
-        </TouchableHighlight>
       </View>
     );
   }

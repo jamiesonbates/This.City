@@ -251,16 +251,35 @@ export default class Map extends Component {
     }
 
     this.watchId = null;
-    this.toProblem = this.toProblem.bind(this);
     this.handleViewProblem = this.handleViewProblem.bind(this);
-  }
-
-  toProblem() {
-    alert('works')
+    this.updateMap = this.updateMap.bind(this);
   }
 
   handleViewProblem(currentProblem) {
     this.props.saveCurrentProblem(currentProblem);
+  }
+
+  updateMap() {
+    axios({
+      method: 'post',
+      url: 'https://q3project-server.herokuapp.com/api/markers',
+      data: {
+        lat: this.state.center.lat,
+        lng: this.state.center.lng
+      }
+    })
+    .then((res) => {
+      const markers = res.data;
+
+      this.setState({
+        problems: markers
+      });
+
+      // console.error(this.state);
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
   }
 
   render() {
@@ -331,6 +350,7 @@ export default class Map extends Component {
        <Control
          currentLocation={this.state.center}
          nav={this.props.navigator}
+         updateMap={this.updateMap}
          userInfo={this.props.userInfo}
        />
 
@@ -352,31 +372,11 @@ export default class Map extends Component {
       {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
     );
 
-    axios({
-      method: 'post',
-      url: 'https://q3project-server.herokuapp.com/api/markers',
-      data: {
-        lat: this.state.center.lat,
-        lng: this.state.center.lng
-      }
-    })
-    .then((res) => {
-      const markers = res.data;
-
-      this.setState({
-        problems: markers
-      });
-
-      // console.error(this.state);
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
+    this.updateMap();
   }
 
   componentDidMount() {
     this.watchID = navigator.geolocation.watchPosition((position) => {
-      alert(position.latitude);
       this.setState({
         center: {
           lat: position.coords.latitude,
