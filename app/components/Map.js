@@ -114,6 +114,17 @@ const styles = StyleSheet.create({
   trashIcon: {
     fontSize: 25,
     color: 'white'
+  },
+  noiseIconContainer: {
+    backgroundColor: '#38B1FF',
+    borderRadius: 50,
+    padding: 6,
+    borderWidth: 2,
+    borderColor: 'black'
+  },
+  noiseIcon: {
+    fontSize: 25,
+    color: 'black'
   }
 });
 
@@ -122,19 +133,22 @@ const TrafficIcon = (
     <MaterialIcons name="traffic" style={styles.trafficIcon} />
   </View>
 );
+
 const ConstructionIcon = (
   <View style={styles.constructionIconContainer}>
     <IonIcons name="ios-hammer" style={styles.constructionIcon} />
   </View>
 );
+
 const BikingIcon = (
   <View style={styles.bikingIconContainer}>
-    <MaterialIcons name="directions-bike" style={styles.bikingIcon}/>
+    <MaterialIcons name="directions-bike" style={styles.bikingIcon} />
   </View>
 );
+
 const TrashIcon = (
   <View style={styles.trashIconContainer}>
-    <FontAwesomeIcons name="trash-o" style={styles.trashIcon}/>
+    <FontAwesomeIcons name="trash-o" style={styles.trashIcon} />
   </View>
 );
 
@@ -142,7 +156,8 @@ const categories = {
   traffic: TrafficIcon,
   construction: ConstructionIcon,
   biking: BikingIcon,
-  garbage: TrashIcon
+  garbage: TrashIcon,
+  noise: NoiseIcon
 }
 
 export default class Map extends Component {
@@ -154,7 +169,7 @@ export default class Map extends Component {
         lat: 47.5993,
         lng: -122.334
       },
-      markers: [{id: 1, lat: 47.5996, lng: -122.337, title: 'Major Erosion', people: '1246', category: 'garbage'}]
+      markers: [{id: 1, lat: 47.5996, lng: -122.337, title: 'Major Erosion', people: '1246', category: 'trash'}]
     }
 
     this.watchId = null;
