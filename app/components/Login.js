@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     width: 300
   },
   formContainer: {
-    // backgroundColor: 'rgba(200, 200, 200, 0.6)',
     marginTop: 50
   },
   registerLink: {

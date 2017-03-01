@@ -331,6 +331,7 @@ export default class Map extends Component {
        <Control
          currentLocation={this.state.center}
          nav={this.props.navigator}
+         userInfo={this.props.userInfo}
        />
 
       </View>
