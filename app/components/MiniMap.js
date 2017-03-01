@@ -51,7 +51,7 @@ export default class MiniMap extends Component {
           draggable
           coordinate={{
             latitude: this.state.marker.latitude,
-            longitutde: this.state.marker.longitude
+            longitude: this.state.marker.longitude
           }}
           onDrag={(e) => {this.props.dragMarker(e)}}
          >
