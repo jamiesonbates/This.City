@@ -43,8 +43,8 @@ export default class MiniMap extends Component {
           region={{
             latitude: this.state.center.lat,
             longitude: this.state.center.lng,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
+            latitudeDelta: 0.003,
+            longitudeDelta: 0.003,
           }}
        >
          <MapView.Marker

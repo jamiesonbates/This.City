@@ -17,44 +17,117 @@ const styles = StyleSheet.create({
     backgroundColor: '#6197e9'
   },
   header: {
-    fontSize: 30,
+    fontSize: 50,
+    fontFamily: 'alegreya_sans_sc_regular',
+    color: 'white'
+  },
+  buttonContainer: {
+    marginLeft: 10,
+    marginRight: 10,
+    alignItems: 'center',
+    borderRadius: 12,
+    backgroundColor: '#6197e9',
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'center'
   },
   submitButton: {
-    borderWidth: 1,
-    height: 50,
-    width: 100
+    padding: 10,
+    backgroundColor: '#D6352D',
+    flex: 2,
+    borderRadius: 12,
+    color: 'white',
+    fontStyle: 'normal',
+    fontFamily: 'alegreya_sans_sc_regular',
+    fontWeight: 'bold',
+    fontSize: 25
   },
   infoContainer: {
     flexDirection: 'column',
-    flex: 1,
-    // backgroundColor: 'red',
+    flex: 3,
+    backgroundColor: '#D6352D',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginLeft: 5,
     marginRight: 5,
     marginTop: 5,
-    marginBottom: 5
+    marginBottom: 5,
+    borderRadius: 6,
   },
-  inputRow: {
+  inputRowTextInput: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
+    marginBottom: 10,
     alignItems: 'center',
+    flexDirection: 'row'
+  },
+  inputRowOtherInput: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    justifyContent: 'center',
     flexDirection: 'row',
-    marginBottom: 5
+    marginBottom: 10
+  },
+  inputField: {
+    borderRadius: 12,
   },
   labelStyle: {
-    color: '#55575c',
+    color: 'black',
+    fontStyle: 'normal',
     fontFamily: 'raleway_regular',
-    fontWeight: 'normal',
     fontSize: 16,
     textAlign: 'center',
     width: 260
   },
   inputStyle: {
-    color: '#333742',
+    color: 'black',
+    fontStyle: 'normal',
     fontFamily: 'raleway_regular'
   },
   picker: {
-    flex: 1,
+    flex: 2,
+    borderWidth: 1,
+    borderRadius: 12,
     backgroundColor: 'white'
+  },
+  helperText: {
+    fontStyle: 'normal',
+    fontFamily: 'alegreya_sans_sc_regular',
+    fontSize: 20,
+    color: 'black',
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
+    marginBottom: 10
+  },
+  directionsText: {
+    fontStyle: 'normal',
+    fontFamily: 'raleway_regular',
+    fontSize: 20,
+    color: 'white'
+  },
+  mapDirectionsText: {
+    fontStyle: 'normal',
+    fontFamily: 'raleway_regular',
+    fontSize: 20,
+    color: 'black',
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
+    marginBottom: 10
+  },
+  mapContainer: {
+    flex: 3,
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    borderRadius: 6,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 5,
+    marginBottom: 5
   }
 });
 
@@ -118,12 +191,12 @@ class Report extends Component {
         <Text style={styles.header}>Report a Problem</Text>
 
         <View style={styles.infoContainer}>
-          <View style={styles.inputRow}>
+          <View style={styles.inputRowTextInput}>
             <Kohana
               style={styles.inputField}
               lableStyle={styles.labelStyle}
               inputStyle={styles.inputStyle}
-              label={'Title'}
+              label={'Add a Title'}
               iconClass={MaterialIcons}
               iconName={'report-problem'}
               iconColor={'#89c6f2'}
@@ -132,37 +205,26 @@ class Report extends Component {
               value={this.state.title}
               inputStyle={styles.inputStyle}
             />
-            {/* <TextInput
-              name="title"
-              onChangeText={(title) => this.setState({title})}
-              style={styles.inputField}
-              value={this.state.title}
-            /> */}
           </View>
 
-          <View style={styles.inputRow}>
+          <View style={styles.inputRowTextInput}>
             <Kohana
               style={styles.inputField}
-              label={'Description'}
+              label={'Write a Description'}
               iconClass={MaterialIcons}
               iconName={'description'}
               iconColor={'#89c6f2'}
               name={'description'}
               onChangeText={(description) => this.setState({description})}
-              // multiline={true}
+              multiline={true}
               value={this.state.description}
             />
-            {/* <TextInput
-              name="description"
-              onChangeText={(description) => this.setState({description})}
-              multiline={true}
-              style={styles.inputField}
-              value={this.state.description}
-            /> */}
           </View>
 
-          <View style={styles.inputRow}>
+          <Text style={styles.directionsText}>Pick a category</Text>
+          <View style={styles.inputRowOtherInput}>
             <Picker
+              prompt={'Pick a category'}
               style={styles.picker}
               selectedValue={this.state.category_id}
               onValueChange={(cat) => this.setState({category_id: cat})}
@@ -175,12 +237,13 @@ class Report extends Component {
                       value={option.id}
                     />)
                 }
-              </Picker>
-            </View>
+            </Picker>
+          </View>
         </View>
 
 
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={styles.mapContainer}>
+          <Text style={styles.mapDirectionsText}>Select Location (touch/hold red marker)</Text>
           <MiniMap
             currentLocation={this.props.currentLocation}
             dragMarker={this.dragMarker}
@@ -192,9 +255,10 @@ class Report extends Component {
         <Button
           color="#517cc6"
           onPress={() => this.handleSubmit()}
+          containerStyle={styles.buttonContainer}
           style={styles.submitButton}
-        >
-          Report
+          >
+            Submit Report
         </Button>
 
       </View>
