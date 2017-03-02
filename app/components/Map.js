@@ -246,8 +246,10 @@ export default class Map extends Component {
 
     this.state = {
       center: {
-        lat: 47.5993,
-        lng: -122.334
+        // lat: 47.5993,
+        // lng: -122.334
+        lat: 0,
+        lng: 0
       },
       problems: [],
       problemModalOpen: false
@@ -350,15 +352,10 @@ export default class Map extends Component {
                  <View style={styles.calloutContainer}>
                    <View style={styles.peopleContainer}>
                      <EntypoIcons name="eye" style={styles.eye}/>
-                     <Text style={styles.people}>5</Text>
+                     <Text style={styles.people}>Total: {marker.total}</Text>
                    </View>
                    <Text style={styles.category}>{marker.category}</Text>
                  </View>
-                 {/* <Button
-                   color="#B113FF"
-                  //  onPress={() => this.handleViewProblem(marker)}
-                   title="View"
-                 /> */}
                </MapView.Callout>
              </MapView.Marker>
            ))
@@ -396,12 +393,13 @@ export default class Map extends Component {
             lng: position.coords.longitude
           }
         });
-      },
-      (error) => console.error(error),
-      {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000}
-    );
 
-    this.updateMap();
+        this.updateMap();
+      },
+      (err) => console.error(err.message, 'it\'s me')
+      // ,
+      // {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
   }
 
   componentDidMount() {
@@ -412,6 +410,8 @@ export default class Map extends Component {
           lng: position.coords.longitude
         }
       });
+
+      this.updateMap();
     });
   }
 

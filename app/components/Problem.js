@@ -122,7 +122,7 @@ class Problem extends Component {
   componentWillMount() {
     const userId = this.props.userInfo.id;
     const probId = this.state.currentProblem.id;
-
+    alert(userId)
     axios
       .get(`https://q3project-server.herokuapp.com/api/verification/${userId}/${probId}`)
       .then((res) => {
