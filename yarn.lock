@@ -2929,6 +2929,10 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
+"react-native-camera@git+https://github.com/lwansbrough/react-native-camera.git":
+  version "0.6.0"
+  resolved "git+https://github.com/lwansbrough/react-native-camera.git#c688c8344cfefdc9c39f3266a2b46d061d4e8ee8"
+
 react-native-maps@^0.12.4:
   version "0.12.4"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.12.4.tgz#2bc115d39cad542d66c241bc0cba4dddd87e44f7"
