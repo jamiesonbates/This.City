@@ -78,9 +78,10 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   fakeLink: {
-    color: 'lightcoral',
+    color: '#D6352D',
     fontFamily: 'raleway_regular',
-    fontSize: 14
+    fontWeight: 'bold',
+    fontSize: 18
   },
   detailsContainer: {
     alignItems: 'center',

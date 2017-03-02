@@ -78,16 +78,24 @@ const styles = StyleSheet.create({
   },
   userText: {
     fontSize: 25,
-    fontFamily: 'raleway_regular'
+    fontFamily: 'raleway_regular',
   },
   problemContainer: {
+    backgroundColor: '#D6352D',
+    borderRadius: 12,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
     flexDirection: 'column',
     alignItems: 'center',
     flex: 1
   },
   problemText: {
     fontSize: 30,
-    marginBottom: 10
+    marginBottom: 10,
+    color: 'white',
+    fontFamily: 'alegreya_sans_sc_regular'
   },
   iconContainer: {
     flexDirection: 'row',
@@ -97,6 +105,7 @@ const styles = StyleSheet.create({
   choices: {
     marginLeft: 10,
     marginRight: 10,
+    marginBottom: 10,
     backgroundColor: 'white',
     flex: 1,
     flexDirection: 'row',
@@ -108,7 +117,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginLeft: 15,
     marginBottom: 15,
-    marginTop: 20
+    marginTop: 10
   },
   goBackBtn: {
     elevation: 500,
@@ -127,12 +136,12 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 40,
-    color: 'black',
+    color: '#D6352D',
     marginRight: 5
   },
   userIcon: {
     fontSize: 30,
-    color: 'black',
+    color: '#89c6f2',
     marginRight: 5
   }
 });
