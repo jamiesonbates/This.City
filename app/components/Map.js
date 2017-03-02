@@ -32,8 +32,10 @@ const styles = StyleSheet.create({
   },
   person: {
     backgroundColor: '#397AFF',
+    borderRadius: 50,
+    borderWidth: 5,
     padding: 8,
-    borderRadius: 50
+    zIndex: 100
   },
   calloutContainer: {
     flex: 1,
@@ -97,20 +99,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black'
   },
-  trafficIcon: {
-    fontSize: 30,
-    color: 'black'
-  },
   constructionIconContainer: {
     backgroundColor: '#FF3D31',
     borderRadius: 50,
     padding: 4,
     borderWidth: 2,
     borderColor: 'black'
-  },
-  constructionIcon: {
-    fontSize: 30,
-    color: 'white'
   },
   bikingIconContainer: {
     backgroundColor: 'rgba(126, 227, 119, 0.6)',
@@ -119,20 +113,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black'
   },
-  bikingIcon: {
-    fontSize: 30,
-    color: 'black'
-  },
   trashIconContainer: {
     backgroundColor: 'rgba(131, 161, 230, 0.6)',
     borderRadius: 50,
     padding: 6,
     borderWidth: 2,
     borderColor: 'black'
-  },
-  trashIcon: {
-    fontSize: 25,
-    color: 'black'
   },
   noiseIconContainer: {
     backgroundColor: 'rgba(219, 198, 246, 0.6)',
@@ -141,20 +127,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black'
   },
-  noiseIcon: {
-    fontSize: 25,
-    color: 'black'
-  },
   dangerIconContainer: {
     backgroundColor: 'rgba(237, 85, 113, 0.6)',
     borderRadius: 50,
     padding: 5,
     borderWidth: 2,
     borderColor: 'black'
-  },
-  dangerIcon: {
-    fontSize: 25,
-    color: 'black'
   },
   brokenIconContainer: {
     backgroundColor: 'rgba(236, 226, 101, 0.6)',
@@ -163,20 +141,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black'
   },
-  brokenIcon: {
-    fontSize: 25,
-    color: 'black'
-  },
   theftIconContainer: {
     backgroundColor: 'rgba(236, 173, 116, 0.6)',
     borderRadius: 50,
     padding: 5,
     borderWidth: 2,
     borderColor: 'black'
-  },
-  theftIcon: {
-    fontSize: 25,
-    color: 'black'
   },
   otherIconContainer: {
     backgroundColor: 'rgba(124, 123, 123, 0.6)',
@@ -185,77 +155,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black'
   },
-  otherIcon: {
-    fontSize: 25,
-    color: 'black'
-  }
 });
-
-const TrafficIcon = (
-  <View style={styles.trafficIconContainer}>
-    <MaterialIcons name="traffic" style={styles.trafficIcon} />
-  </View>
-);
-
-const ConstructionIcon = (
-  <View style={styles.constructionIconContainer}>
-    <IonIcons name="ios-hammer" style={styles.constructionIcon} />
-  </View>
-);
-
-const BikingIcon = (
-  <View style={styles.bikingIconContainer}>
-    <MaterialIcons name="directions-bike" style={styles.bikingIcon} />
-  </View>
-);
-
-const TrashIcon = (
-  <View style={styles.trashIconContainer}>
-    <FontAwesomeIcons name="trash-o" style={styles.trashIcon} />
-  </View>
-);
-
-const NoiseIcon = (
-  <View style={styles.noiseIconContainer}>
-    <FontAwesomeIcons name="volume-up" style={styles.noiseIcon} />
-  </View>
-);
-
-const DangerIcon = (
-  <View style={styles.dangerIconContainer}>
-    <FontAwesomeIcons name="exclamation" style={styles.dangerIcon} />
-  </View>
-);
-
-const BrokenIcon = (
-  <View style={styles.brokenIconContainer}>
-    <FontAwesomeIcons name="chain-broken" style={styles.brokenIcon} />
-  </View>
-);
-
-const TheftIcon = (
-  <View style={styles.theftIconContainer}>
-    <EntypoIcons name="lock-open" style={styles.theftIcon} />
-  </View>
-);
-
-const OtherIcon = (
-  <View style={styles.otherIconContainer}>
-    <EntypoIcons name="infinity" style={styles.otherIcon} />
-  </View>
-)
-
-const categories = {
-  traffic: [TrafficIcon, 'Traffic Alert'],
-  construction: [ConstructionIcon, 'Construction Alert'],
-  biking: [BikingIcon, 'Biking Hazard'],
-  garbage: [TrashIcon, 'Pollution Alert'],
-  noise: [NoiseIcon, 'Noise Alert'],
-  danger: [DangerIcon, 'Safety Concern'],
-  broken: [BrokenIcon, 'Broken Infrastructure'],
-  theft: [TheftIcon, 'Recent Crime'],
-  other: [OtherIcon, 'Other']
-}
 
 export default class Map extends Component {
   constructor(props) {
@@ -263,10 +163,16 @@ export default class Map extends Component {
 
     this.state = {
       center: {
-        // lat: 47.5993,
-        // lng: -122.334
         lat: 0,
         lng: 0
+      },
+      currentLocation: {
+        lat: 0,
+        lng: 0
+      },
+      delta: {
+        latitudeDelta: 0,
+        longitudeDelta: 0
       },
       problems: [],
       problemModalOpen: false
@@ -276,6 +182,7 @@ export default class Map extends Component {
     this.handleViewProblem = this.handleViewProblem.bind(this);
     this.updateMap = this.updateMap.bind(this);
     this.toggleProblem = this.toggleProblem.bind(this);
+    this.handleRegionChange = this.handleRegionChange.bind(this);
   }
 
   toggleProblem() {
@@ -291,6 +198,19 @@ export default class Map extends Component {
     this.props.saveCurrentProblem(currentProblem);
 
     this.setState({ problemModalOpen: true });
+  }
+
+  handleRegionChange(event) {
+    this.setState({
+      center: {
+        lat: event.latitude,
+        lng: event.longitude
+      },
+      delta: {
+        latitudeDelta: event.latitudeDelta,
+        longitudeDelta: event.longitudeDelta
+      }
+    });
   }
 
   viewProblem() {
@@ -318,7 +238,104 @@ export default class Map extends Component {
     });
   }
 
+  iconStyle(delta) {
+    if (delta >= 0.1) {
+      return {
+        fontSize: 8,
+        color: 'black'
+      }
+    }
+    if (delta >= 0.05) {
+      return {
+        fontSize: 6,
+        color: 'black'
+      }
+    }
+    if (delta >= 0.01) {
+      return {
+        fontSize: 15,
+        color: 'black'
+      }
+    }
+    if (delta >= 0.005) {
+      return {
+        fontSize: 22,
+        color: 'black'
+      }
+    }
+    if (delta >= 0.0001) {
+      return {
+        fontSize: 15,
+        color: 'black'
+      }
+    }
+  }
+
   render() {
+    const NoiseIcon = (
+      <View style={styles.noiseIconContainer}>
+        <FontAwesomeIcons name="volume-up" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+      </View>
+    );
+
+    const TrafficIcon = (
+      <View style={styles.trafficIconContainer}>
+        <MaterialIcons name="traffic" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+      </View>
+    );
+
+    const ConstructionIcon = (
+      <View style={styles.constructionIconContainer}>
+        <IonIcons name="ios-hammer" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+      </View>
+    );
+    const BikingIcon = (
+      <View style={styles.bikingIconContainer}>
+        <MaterialIcons name="directions-bike" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+      </View>
+    );
+
+    const TrashIcon = (
+      <View style={styles.trashIconContainer}>
+        <FontAwesomeIcons name="trash-o" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+      </View>
+    );
+    const DangerIcon = (
+      <View style={styles.dangerIconContainer}>
+        <FontAwesomeIcons name="exclamation" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+      </View>
+    );
+
+    const BrokenIcon = (
+      <View style={styles.brokenIconContainer}>
+        <FontAwesomeIcons name="chain-broken" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+      </View>
+    );
+
+    const TheftIcon = (
+      <View style={styles.theftIconContainer}>
+        <EntypoIcons name="lock-open" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+      </View>
+    );
+
+    const OtherIcon = (
+      <View style={styles.otherIconContainer}>
+        <EntypoIcons name="infinity" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+      </View>
+    )
+
+    const categories = {
+      traffic: [TrafficIcon, 'Traffic Alert'],
+      construction: [ConstructionIcon, 'Construction Alert'],
+      biking: [BikingIcon, 'Biking Hazard'],
+      garbage: [TrashIcon, 'Pollution Alert'],
+      noise: [NoiseIcon, 'Noise Alert'],
+      danger: [DangerIcon, 'Safety Concern'],
+      broken: [BrokenIcon, 'Broken Infrastructure'],
+      theft: [TheftIcon, 'Recent Crime'],
+      other: [OtherIcon, 'Other']
+    }
+
     return (
       <View style={styles.container}>
         <Modal
@@ -333,12 +350,14 @@ export default class Map extends Component {
         </Modal>
         <MapView
           style={styles.map}
+
           region={{
             latitude: this.state.center.lat,
             longitude: this.state.center.lng,
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           }}
+          onRegionChangeComplete={(e) => this.handleRegionChange(e)}
        >
          {
            this.state.problems
@@ -396,8 +415,8 @@ export default class Map extends Component {
         <MapView.Marker
           coordinate={
             {
-              latitude: this.state.center.lat,
-              longitude: this.state.center.lng
+              latitude: this.state.currentLocation.lat,
+              longitude: this.state.currentLocation.lng
             }
           }
         >
@@ -423,6 +442,10 @@ export default class Map extends Component {
           center: {
             lat: position.coords.latitude,
             lng: position.coords.longitude
+          },
+          currentLocation: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
           }
         });
 
@@ -437,7 +460,12 @@ export default class Map extends Component {
   componentDidMount() {
     this.watchID = navigator.geolocation.watchPosition((position) => {
       this.setState({
-        center: {
+        // DON'T UNCOMMENT
+        // center: {
+        //   lat: position.coords.latitude,
+        //   lng: position.coords.longitude
+        // },
+        currentLocation: {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
