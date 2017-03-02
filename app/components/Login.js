@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  Button,
   Image,
   Text,
   TextInput,
@@ -10,8 +9,9 @@ import {
   View
 } from 'react-native';
 import axios from 'axios';
+import Button from 'react-native-button';
 import { Kohana } from 'react-native-textinput-effects';
-import MaterialsIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 const styles = StyleSheet.create({
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
   },
   appNameText: {
     color: '#403d3d',
-    fontFamily: 'raleway_regular',
-    fontSize: 60,
+    fontFamily: 'alegreya_sans_sc_regular',
+    fontSize: 70,
     textAlign: 'center'
   },
   welcomeText: {
@@ -40,10 +40,8 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   },
   inputField: {
-    fontFamily: 'raleway_regular',
-    fontSize: 17,
-    height: 50,
-    width: 270
+    borderRadius: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)'
   },
   inputRow: {
     alignItems: 'center',
@@ -64,11 +62,38 @@ const styles = StyleSheet.create({
     color: 'lightcoral',
     fontFamily: 'raleway_regular',
     fontSize: 18,
+  },
+  labelStyle: {
+    color: '#55575c',
+    fontFamily: 'raleway_regular',
+    fontWeight: 'normal',
+    fontSize: 16,
+    textAlign: 'center',
+    width: 260
+  },
+  inputStyle: {
+    color: '#333742',
+    fontFamily: 'raleway_regular'
+  },
+  submitContainer: {
+    alignItems: 'center',
+    borderRadius: 6,
+    backgroundColor: '#6197e9',
+    flexDirection: 'row',
+    height: 40,
+    justifyContent: 'center'
+  },
+  submitButton: {
+    color: 'white',
+    fontFamily: 'raleway_regular',
+    fontWeight: 'normal',
+    fontSize: 18
   }
 });
 
 const userIcon = (<SimpleLineIcon name="user" size={20} color="black" style={styles.icon} />);
 const passwordIcon = (<SimpleLineIcon name="key" size={20} color="black" style={styles.icon} />);
+const emailIcon = (<MaterialIcon name="email" size={20} color="black" />);
 
 export default class Login extends Component {
   constructor(props) {
@@ -133,13 +158,13 @@ export default class Login extends Component {
       <View style={styles.formContainer}>
         <View style={styles.inputRow}>
           <Kohana
-            style={{ backgroundColor: '#f9f5ed' }}
-            label={'Line'}
-            iconClass={MaterialsIcon}
+            style={styles.inputField}
+            label={"Email"}
+            iconClass={MaterialIcon}
             iconName={'email'}
-            iconColor={'#f4d29a'}
-            labelStyle={{ color: '#91627b' }}
-            inputStyle={{ color: '#91627b' }}
+            iconColor={'#a6d6ee'}
+            labelStyle={styles.labelStyle}
+            inputStyle={styles.inputStyle}
             name="email"
             onChangeText={(email) => this.setState({email})}
             value={this.state.email}
@@ -154,24 +179,42 @@ export default class Login extends Component {
         </View>
 
         <View style={styles.inputRow}>
-          {passwordIcon}
+          <Kohana
+            style={styles.inputField}
+            label={"Password"}
+            iconClass={SimpleLineIcon}
+            iconName={'key'}
+            iconColor={'#a6d6ee'}
+            labelStyle={styles.labelStyle}
+            inputStyle={styles.inputStyle}
+            secureTextEntry={true}
+            name="password"
+            onChangeText={(password) => this.setState({password})}
+            value={this.state.password}
+          />
+          {/* {passwordIcon}
           <TextInput
             name="password"
             style={styles.inputField}
             onChangeText={(password) => this.setState({password})}
             secureTextEntry={true}
             value={this.state.password}
-          />
+          /> */}
         </View>
 
         <View style={{ height: 10 }}></View>
 
-        <Button
-          color="#517cc6"
+        {/* <Button
+          // color="#517cc6"
           onPress={this.callApi}
           style={styles.submitButton}
-          title="Submit"
-        />
+          // title="Submit"
+        /> */}
+        <Button
+          containerStyle={styles.submitContainer}
+          style={styles.submitButton}>
+          Log in
+        </Button>
 
         <View style={styles.linkBox}>
           <Text style={{ color: '#393836', fontFamily: 'raleway_regular', fontSize: 18 }}>Not a member?</Text>
