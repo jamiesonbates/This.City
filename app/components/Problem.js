@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, ListView, Text, TextInput, TouchableHighlight, StyleSheet, View } from 'react-native';
+import { ListView, Text, TextInput, TouchableHighlight, StyleSheet, View } from 'react-native';
 import axios from 'axios';
+import Button from 'react-native-button';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import EvilIcon from 'react-native-vector-icons/EvilIcons';
 
@@ -10,7 +11,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#6197e9'
   },
   appName: {
     flexDirection: 'row',
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
   },
   title: {
     flexDirection: 'column',
-    flex: 2
+    flex: 1
   },
   titleText: {
     fontSize: 25
@@ -37,15 +39,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  goBack: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flex: 1
-  },
   user: {
     flexDirection: 'row',
-    flex: 1
+    flex: -1
   },
   userText: {
     fontSize: 15
@@ -67,6 +63,18 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     fontSize: 20
+  },
+  goBack: {
+    alignSelf: 'flex-start',
+    marginLeft: 10,
+    marginBottom: 10,
+    marginTop: 5
+  },
+  goBackBtn: {
+    elevation: 2,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    padding: 13
   }
 });
 
@@ -185,13 +193,12 @@ class Problem extends Component {
         </View>
         <View style={styles.goBack}>
           <Button
-            title="Go Back"
             onPress={() => alert('works')}
-          />
+            style={styles.goBackBtn}
+          >
+            Go Back
+          </Button>
         </View>
-        {/* <Button
-          title="Comments"
-        /> */}
       </View>
     );
   }
