@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#6197e9'
   },
   appName: {
-    flexDirection: 'row',
-    borderWidth: 1
+    flexDirection: 'row'
   },
   appNameText: {
-    fontSize: 50
+    fontSize: 50,
+    fontFamily: 'alegreya_sans_sc_regular'
   },
   title: {
     flexDirection: 'column',
