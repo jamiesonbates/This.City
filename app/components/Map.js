@@ -11,10 +11,10 @@ import MapView from 'react-native-maps';
 import Control from './Control';
 import Problem from './Problem';
 import axios from 'axios';
-import EntypoIcons from 'react-native-vector-icons/Entypo';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import IonIcons from 'react-native-vector-icons/Ionicons';
-import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import IonIcon from 'react-native-vector-icons/Ionicons';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,11 +31,9 @@ const styles = StyleSheet.create({
     borderRadius: 50
   },
   person: {
-    backgroundColor: '#397AFF',
+    color: '#262629',
+    backgroundColor: '#7aa4f0',
     borderRadius: 50,
-    borderWidth: 5,
-    padding: 8,
-    zIndex: 100
   },
   calloutContainer: {
     flex: 1,
@@ -274,53 +272,53 @@ export default class Map extends Component {
   render() {
     const NoiseIcon = (
       <View style={styles.noiseIconContainer}>
-        <FontAwesomeIcons name="volume-up" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+        <FontAwesomeIcon name="volume-up" style={this.iconStyle(this.state.delta.latitudeDelta)} />
       </View>
     );
 
     const TrafficIcon = (
       <View style={styles.trafficIconContainer}>
-        <MaterialIcons name="traffic" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+        <MaterialIcon name="traffic" style={this.iconStyle(this.state.delta.latitudeDelta)} />
       </View>
     );
 
     const ConstructionIcon = (
       <View style={styles.constructionIconContainer}>
-        <IonIcons name="ios-hammer" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+        <IonIcon name="ios-hammer" style={this.iconStyle(this.state.delta.latitudeDelta)} />
       </View>
     );
     const BikingIcon = (
       <View style={styles.bikingIconContainer}>
-        <MaterialIcons name="directions-bike" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+        <MaterialIcon name="directions-bike" style={this.iconStyle(this.state.delta.latitudeDelta)} />
       </View>
     );
 
     const TrashIcon = (
       <View style={styles.trashIconContainer}>
-        <FontAwesomeIcons name="trash-o" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+        <FontAwesomeIcon name="trash-o" style={this.iconStyle(this.state.delta.latitudeDelta)} />
       </View>
     );
     const DangerIcon = (
       <View style={styles.dangerIconContainer}>
-        <FontAwesomeIcons name="exclamation" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+        <FontAwesomeIcon name="exclamation" style={this.iconStyle(this.state.delta.latitudeDelta)} />
       </View>
     );
 
     const BrokenIcon = (
       <View style={styles.brokenIconContainer}>
-        <FontAwesomeIcons name="chain-broken" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+        <FontAwesomeIcon name="chain-broken" style={this.iconStyle(this.state.delta.latitudeDelta)} />
       </View>
     );
 
     const TheftIcon = (
       <View style={styles.theftIconContainer}>
-        <EntypoIcons name="lock-open" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+        <EntypoIcon name="lock-open" style={this.iconStyle(this.state.delta.latitudeDelta)} />
       </View>
     );
 
     const OtherIcon = (
       <View style={styles.otherIconContainer}>
-        <EntypoIcons name="infinity" style={this.iconStyle(this.state.delta.latitudeDelta)} />
+        <EntypoIcon name="infinity" style={this.iconStyle(this.state.delta.latitudeDelta)} />
       </View>
     )
 
@@ -402,7 +400,7 @@ export default class Map extends Component {
                        <Text style={styles.votes}>
                          {marker.total}
                        </Text>
-                       <IonIcons name="ios-people" size={35} color="#89c6f2" />
+                       <IonIcon name="ios-people" size={35} color="#89c6f2" />
                      </View>
                      <Text style={styles.fakeLink}>MORE DETAILS</Text>
                    </View>
@@ -419,8 +417,9 @@ export default class Map extends Component {
               longitude: this.state.currentLocation.lng
             }
           }
+          style={{ zIndex: 1 }}
         >
-          <View style={styles.person}></View>
+          <MaterialIcon name="my-location" size={20} style={styles.person}></MaterialIcon>
         </MapView.Marker>
        </MapView>
 
@@ -451,7 +450,7 @@ export default class Map extends Component {
 
         this.updateMap();
       },
-      (err) => console.error(err.message, 'it\'s me')
+      (err) => console.error(err.message)
       // ,
       // {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
