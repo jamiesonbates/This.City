@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import { Button, Picker, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { Picker, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import axios from 'axios';
+import Button from 'react-native-button';
 import MiniMap from './MiniMap';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Kohana } from 'react-native-textinput-effects';
 
 const styles = StyleSheet.create({
   container: {
+    width: null,
+    height: null,
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#6197e9'
   },
   header: {
     fontSize: 30,
@@ -18,15 +24,22 @@ const styles = StyleSheet.create({
     height: 50,
     width: 100
   },
-  inputField: {
-    fontSize: 17,
-    height: 50,
-    width: 270
+  infoContainer: {
+    // flexDirection: 'column',
+    // flex: 2,
+    // backgroundColor: 'white',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 5,
+    marginBottom: 5
   },
   inputRow: {
     alignItems: 'center',
     flexDirection: 'row',
-    marginBottom: 10
+    // flex: 1,
+    marginBottom: 5
   }
 });
 
@@ -89,39 +102,62 @@ class Report extends Component {
       <View style={styles.container}>
         <Text style={styles.header}>Report a Problem</Text>
 
-        <View style={styles.inputRow}>
-          <Text>Issue</Text>
-          <TextInput
-            name="title"
-            onChangeText={(title) => this.setState({title})}
-            style={styles.inputField}
-            value={this.state.title}
-          />
+        <View style={styles.infoContainer}>
+          <View style={styles.inputRow}>
+            <Kohana
+              // style={styles.inputField}
+              label={'Title'}
+              iconClass={MaterialIcons}
+              iconName={'report-problem'}
+              iconColor={'#89c6f2'}
+              name={'title'}
+              onChangeText={(title) => this.setState({title})}
+              value={this.state.title}
+              inputStyle={styles.inputStyle}
+            />
+            {/* <TextInput
+              name="title"
+              onChangeText={(title) => this.setState({title})}
+              style={styles.inputField}
+              value={this.state.title}
+            /> */}
+          </View>
+
+          <View style={styles.inputRow}>
+            <Kohana
+              // style={styles.inputField}
+              label={'Description'}
+              iconClass={MaterialIcons}
+              iconName={'description'}
+              iconColor={'#89c6f2'}
+              name={'description'}
+              onChangeText={(description) => this.setState({description})}
+              // multiline={true}
+              value={this.state.description}
+            />
+            {/* <TextInput
+              name="description"
+              onChangeText={(description) => this.setState({description})}
+              multiline={true}
+              style={styles.inputField}
+              value={this.state.description}
+            /> */}
+          </View>
+
+          <View style={styles.inputRow}>
+            <Picker
+              selectedValue={this.state.category_id}
+              onValueChange={(cat) => this.setState({category_id: cat})}
+              >
+                {
+                  this.state.categories.map(option => <Picker.Item key={option.id} label={option.name} value={option.id} />)
+                }
+              </Picker>
+            </View>
         </View>
 
-        <View style={{ width: 150 }}>
-          <Picker
-            selectedValue={this.state.category_id}
-            onValueChange={(cat) => this.setState({category_id: cat})}
-          >
-            {
-              this.state.categories.map(option => <Picker.Item key={option.id} label={option.name} value={option.id} />)
-            }
-          </Picker>
-        </View>
 
-        <View style={styles.inputRow}>
-          <Text>Describe the Issue:</Text>
-          <TextInput
-            name="description"
-            onChangeText={(description) => this.setState({description})}
-            multiline={true}
-            style={styles.inputField}
-            value={this.state.description}
-          />
-        </View>
-
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row'}}>
           <MiniMap
             currentLocation={this.props.currentLocation}
             dragMarker={this.dragMarker}
@@ -133,8 +169,10 @@ class Report extends Component {
         <Button
           color="#517cc6"
           onPress={() => this.handleSubmit()}
-          title="Report"
-        />
+          style={styles.submitButton}
+        >
+          Report
+        </Button>
 
       </View>
     );
