@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
+  appName: {
+    flexDirection: 'row'
+    borderWidth: 1
+  },
   problem: {
     flexDirection: 'row',
     justifyContent: 'space-between'
@@ -89,6 +93,9 @@ class Problem extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.appName}>
+          <Text>App Name</Text>
+        </View>
 
         <View style={styles.header}>
           <Text style={styles.issueName}>{this.state.currentProblem.title}</Text>
