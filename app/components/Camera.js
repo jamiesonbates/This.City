@@ -20,7 +20,7 @@ class CameraView extends Component {
           }}
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}>
-          <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
+          <Text style={styles.capture} onPress={this.takePicture.bind(this)}>Take Picture</Text>
         </Camera>
       </View>
     );
@@ -28,7 +28,7 @@ class CameraView extends Component {
 
   takePicture() {
     this.camera.capture()
-      .then((data) => console.log(data))
+      .then((data) => alert(data))
       .catch(err => console.error(err));
   }
 }
