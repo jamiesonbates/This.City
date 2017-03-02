@@ -241,7 +241,6 @@ class Report extends Component {
           </View>
         </View>
 
-
         <View style={styles.mapContainer}>
           <Text style={styles.mapDirectionsText}>Select Location (touch/hold red marker)</Text>
           <MiniMap
@@ -257,7 +256,7 @@ class Report extends Component {
           onPress={() => this.handleSubmit()}
           containerStyle={styles.buttonContainer}
           style={styles.submitButton}
-          >
+        >
             Submit Report
         </Button>
 
