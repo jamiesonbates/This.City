@@ -25,11 +25,11 @@ const styles = StyleSheet.create({
     width: 100
   },
   infoContainer: {
-    // flexDirection: 'column',
-    // flex: 2,
-    // backgroundColor: 'white',
-    // justifyContent: 'space-between',
-    // alignItems: 'center',
+    flexDirection: 'column',
+    flex: 1,
+    // backgroundColor: 'red',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginLeft: 5,
     marginRight: 5,
     marginTop: 5,
@@ -38,8 +38,23 @@ const styles = StyleSheet.create({
   inputRow: {
     alignItems: 'center',
     flexDirection: 'row',
-    // flex: 1,
-    marginBottom: 5
+    marginBottom: 5,
+    // backgroundColor: 'white'
+  },
+  labelStyle: {
+    color: '#55575c',
+    fontFamily: 'raleway_regular',
+    fontWeight: 'normal',
+    fontSize: 16,
+    textAlign: 'center',
+    width: 260
+  },
+  inputStyle: {
+    color: '#333742',
+    fontFamily: 'raleway_regular'
+  },
+  picker: {
+    backgroundColor: 'white'
   }
 });
 
@@ -105,7 +120,9 @@ class Report extends Component {
         <View style={styles.infoContainer}>
           <View style={styles.inputRow}>
             <Kohana
-              // style={styles.inputField}
+              style={styles.inputField}
+              lableStyle={styles.labelStyle}
+              inputStyle={styles.inputStyle}
               label={'Title'}
               iconClass={MaterialIcons}
               iconName={'report-problem'}
@@ -125,7 +142,7 @@ class Report extends Component {
 
           <View style={styles.inputRow}>
             <Kohana
-              // style={styles.inputField}
+              style={styles.inputField}
               label={'Description'}
               iconClass={MaterialIcons}
               iconName={'description'}
@@ -146,18 +163,25 @@ class Report extends Component {
 
           <View style={styles.inputRow}>
             <Picker
+              style={styles.picker}
               selectedValue={this.state.category_id}
               onValueChange={(cat) => this.setState({category_id: cat})}
               >
                 {
-                  this.state.categories.map(option => <Picker.Item key={option.id} label={option.name} value={option.id} />)
+                  this.state.categories.map(option =>
+                    <Picker.Item
+                      key={option.id}
+                      label={option.name}
+                      value={option.id}
+                      style={styles.picker}
+                    />)
                 }
               </Picker>
             </View>
         </View>
 
 
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flex: 1, flexDirection: 'row'}}>
           <MiniMap
             currentLocation={this.props.currentLocation}
             dragMarker={this.dragMarker}
