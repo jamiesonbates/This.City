@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
     fontFamily: 'raleway_regular',
     fontWeight: 'normal',
     fontSize: 18
-  }
+  },
+  
 });
 
 export default class Login extends Component {

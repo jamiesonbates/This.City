@@ -3,6 +3,8 @@ import { ListView, Text, TextInput, TouchableHighlight, StyleSheet, View } from 
 import axios from 'axios';
 import Button from 'react-native-button';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import EvilIcon from 'react-native-vector-icons/EvilIcons';
 
 
@@ -23,17 +25,39 @@ const styles = StyleSheet.create({
   },
   title: {
     flexDirection: 'column',
-    flex: 1
+    flex: 1,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  titleHeaderContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  titleHeaderText: {
+    fontSize: 35,
+    color: 'black'
   },
   titleText: {
-    fontSize: 25
+    fontSize: 25,
+    color: 'black'
   },
   description: {
     flexDirection: 'column',
-    flex: 2
+    flex: 2,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  descriptionHeaderContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  descriptionHeaderText: {
+    fontSize: 35,
+    color: 'black'
   },
   descriptionText: {
-    fontSize: 25
+    fontSize: 25,
+    color: 'black'
   },
   problem: {
     flexDirection: 'row',
@@ -41,40 +65,70 @@ const styles = StyleSheet.create({
   },
   user: {
     flexDirection: 'row',
-    flex: -1
+    alignItems: 'center',
+    alignSelf: 'center',
+    flex: -1,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10
   },
   userText: {
-    fontSize: 15
+    fontSize: 25
+  },
+  problemContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    flex: 1
+  },
+  problemText: {
+    fontSize: 30,
+    marginBottom: 10
   },
   iconContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    flex: 1
   },
   choices: {
-    marginLeft: 50,
-    marginRight: 50
-  },
-  problemContainer: {
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-  problemText: {
-    fontSize: 30
-  },
-  textTitle: {
-    fontSize: 20
+    marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: 'white',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 12
   },
   goBack: {
     alignSelf: 'flex-start',
-    marginLeft: 10,
-    marginBottom: 10,
-    marginTop: 5
+    marginLeft: 15,
+    marginBottom: 15,
+    marginTop: 20
   },
   goBackBtn: {
-    elevation: 2,
+    elevation: 500,
     backgroundColor: 'white',
     borderRadius: 12,
     padding: 13
+  },
+  infoContainer: {
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 12,
+    flex: 3
+  },
+  icon: {
+    fontSize: 40,
+    color: 'black',
+    marginRight: 5
+  },
+  userIcon: {
+    fontSize: 30,
+    color: 'black',
+    marginRight: 5
   }
 });
 
@@ -150,28 +204,37 @@ class Problem extends Component {
           <Text style={styles.appNameText}>App Name</Text>
         </View>
 
-        <View style={styles.title}>
-          <Text style={styles.titleText}>
-            Problem
-          </Text>
-          <Text style={styles.titleText}>
-            {this.state.currentProblem.title}
-          </Text>
-        </View>
+        <View style={styles.infoContainer}>
+          <View style={styles.title}>
+            <View style={styles.titleHeaderContainer}>
+              <MaterialIcons name="report-problem" style={styles.icon}/>
+              <Text style={styles.titleHeaderText}>
+                Problem
+              </Text>
+            </View>
+            <Text style={styles.titleText}>
+              {this.state.currentProblem.title}
+            </Text>
+          </View>
 
-        <View style={styles.description}>
-          <Text style={styles.titleText}>
-            Description
-          </Text>
-          <Text style={styles.descriptionText}>
-            {this.state.currentProblem.description}
-          </Text>
-        </View>
+          <View style={styles.description}>
+            <View style={styles.descriptionHeaderContainer}>
+              <MaterialIcons name="description" style={styles.icon}/>
+              <Text style={styles.titleHeaderText}>
+                Description
+              </Text>
+            </View>
+            <Text style={styles.descriptionText}>
+              {this.state.currentProblem.description}
+            </Text>
+          </View>
 
-        <View style={styles.user}>
-          <Text style={styles.userText}>
-            Submitted by: {this.state.currentProblem.username}
-          </Text>
+          <View style={styles.user}>
+            <MaterialCommunityIcons name="account" style={styles.userIcon} />
+            <Text style={styles.userText}>
+              Report by: {this.state.currentProblem.username}
+            </Text>
+          </View>
         </View>
 
         <View style={styles.problemContainer}>
@@ -180,12 +243,14 @@ class Problem extends Component {
             <TouchableHighlight
               onPress={() => this.handleVerification(true)}
               style={styles.choices}
+              underlayColor="#EDE9EA"
             >
               <FontAwesomeIcon name="check" size={70} color={this.state.upVoteColor} />
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => this.handleVerification(false)}
               style={styles.choices}
+              underlayColor="#EDE9EA"
             >
               <FontAwesomeIcon name="remove" size={70} color={this.state.downVoteColor} />
             </TouchableHighlight>
@@ -206,7 +271,6 @@ class Problem extends Component {
   componentWillMount() {
     const userId = this.props.userInfo.id;
     const probId = this.state.currentProblem.id;
-    alert(userId)
     axios
       .get(`https://q3project-server.herokuapp.com/api/verification/${userId}/${probId}`)
       .then((res) => {
