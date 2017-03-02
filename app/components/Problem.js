@@ -35,11 +35,13 @@ const styles = StyleSheet.create({
   },
   titleHeaderText: {
     fontSize: 35,
-    color: 'black'
+    color: 'black',
+    fontFamily: 'alegreya_sans_sc_regular'
   },
   titleText: {
     fontSize: 25,
-    color: 'black'
+    color: 'black',
+    fontFamily: 'raleway_regular'
   },
   description: {
     flexDirection: 'column',
@@ -53,11 +55,13 @@ const styles = StyleSheet.create({
   },
   descriptionHeaderText: {
     fontSize: 35,
-    color: 'black'
+    color: 'black',
+    fontFamily: 'alegreya_sans_sc_regular'
   },
   descriptionText: {
     fontSize: 25,
-    color: 'black'
+    color: 'black',
+    fontFamily: 'raleway_regular'
   },
   problem: {
     flexDirection: 'row',
@@ -73,7 +77,8 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   userText: {
-    fontSize: 25
+    fontSize: 25,
+    fontFamily: 'raleway_regular'
   },
   problemContainer: {
     flexDirection: 'column',
