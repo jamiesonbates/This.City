@@ -102,14 +102,14 @@ export default class Login extends Component {
     };
 
     this.navigate = this.navigate.bind(this);
-    this.callApi = this.callApi.bind(this);
+    this.callToken = this.callToken.bind(this);
   }
 
   navigate(routeName) {
     this.props.navigator.push({ name: routeName })
   }
 
-  callApi() {
+  callToken() {
     axios
       .post('https://q3project-server.herokuapp.com/api/token', {
         email: this.state.email,
@@ -184,6 +184,7 @@ export default class Login extends Component {
 
         <Button
           containerStyle={styles.submitContainer}
+          onPress={this.callToken}
           style={styles.submitButton}
         >
           Log in
