@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   category: {
     fontFamily: 'raleway_regular',
-    fontSize: 16
+    fontSize: 15
   },
   fakeLink: {
     color: '#D6352D',
@@ -246,15 +246,15 @@ const OtherIcon = (
 )
 
 const categories = {
-  traffic: TrafficIcon,
-  construction: ConstructionIcon,
-  biking: BikingIcon,
-  garbage: TrashIcon,
-  noise: NoiseIcon,
-  danger: DangerIcon,
-  broken: BrokenIcon,
-  theft: TheftIcon,
-  other: OtherIcon
+  traffic: [TrafficIcon, 'Traffic Alert'],
+  construction: [ConstructionIcon, 'Construction Alert'],
+  biking: [BikingIcon, 'Biking Hazard'],
+  garbage: [TrashIcon, 'Pollution Alert'],
+  noise: [NoiseIcon, 'Noise Alert'],
+  danger: [DangerIcon, 'Safety Concern'],
+  broken: [BrokenIcon, 'Broken Infrastructure'],
+  theft: [TheftIcon, 'Recent Crime'],
+  other: [OtherIcon, 'Other']
 }
 
 export default class Map extends Component {
@@ -345,7 +345,8 @@ export default class Map extends Component {
              .map(marker => {
                for (const category in categories) {
                  if (category === marker.category) {
-                   marker.icon = categories[category];
+                   marker.label = categories[category][1]
+                   marker.icon = categories[category][0];
                  }
                }
                return marker;
@@ -374,7 +375,7 @@ export default class Map extends Component {
 
                    <View style={styles.categoryContainer}>
                      <Text style={styles.category}>
-                       {marker.category}
+                       {marker.label}
                      </Text>
                    </View>
                    <View style={styles.detailsContainer}>

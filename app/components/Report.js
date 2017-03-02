@@ -43,14 +43,14 @@ class Report extends Component {
       lng: this.props.currentLocation.lng,
       categories: [
         {id: 1, name: 'Other'},
-        {id: 2, name: 'Construction'},
-        {id: 3, name: 'Biking'},
-        {id: 4, name: 'Garbage'},
-        {id: 5, name: 'Noise'},
-        {id: 6, name: 'Danger'},
-        {id: 7, name: 'Broken'},
-        {id: 8, name: 'Theft'},
-        {id: 9, name: 'Traffic'}
+        {id: 2, name: 'Construction Alert'},
+        {id: 3, name: 'Biking Hazard'},
+        {id: 4, name: 'Pollution Alert'},
+        {id: 5, name: 'Noise Alert'},
+        {id: 6, name: 'Safety Concern'},
+        {id: 7, name: 'Broken Infrastructure'},
+        {id: 8, name: 'Recent Crime'},
+        {id: 9, name: 'Traffic Alert'}
       ]
     };
 
