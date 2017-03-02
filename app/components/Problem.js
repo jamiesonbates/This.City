@@ -13,15 +13,60 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   appName: {
-    flexDirection: 'row'
+    flexDirection: 'row',
     borderWidth: 1
+  },
+  appNameText: {
+    fontSize: 50
+  },
+  title: {
+    flexDirection: 'column',
+    flex: 2
+  },
+  titleText: {
+    fontSize: 25
+  },
+  description: {
+    flexDirection: 'column',
+    flex: 2
+  },
+  descriptionText: {
+    fontSize: 25
   },
   problem: {
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  issueName: {
-    fontFamily: 'raleway_regular'
+  goBack: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flex: 1
+  },
+  user: {
+    flexDirection: 'row',
+    flex: 1
+  },
+  userText: {
+    fontSize: 15
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  choices: {
+    marginLeft: 50,
+    marginRight: 50
+  },
+  problemContainer: {
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  problemText: {
+    fontSize: 30
+  },
+  textTitle: {
+    fontSize: 20
   }
 });
 
@@ -94,30 +139,55 @@ class Problem extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.appName}>
-          <Text>App Name</Text>
+          <Text style={styles.appNameText}>App Name</Text>
         </View>
 
-        <View style={styles.header}>
-          <Text style={styles.issueName}>{this.state.currentProblem.title}</Text>
+        <View style={styles.title}>
+          <Text style={styles.titleText}>
+            Problem
+          </Text>
+          <Text style={styles.titleText}>
+            {this.state.currentProblem.title}
+          </Text>
         </View>
 
-        <Text>{this.state.currentProblem.description}</Text>
-        <Text>{this.state.currentProblem.username}</Text>
+        <View style={styles.description}>
+          <Text style={styles.titleText}>
+            Description
+          </Text>
+          <Text style={styles.descriptionText}>
+            {this.state.currentProblem.description}
+          </Text>
+        </View>
 
-        <View>
-          <Text>Is this a problem?</Text>
-          <View style={styles.problem}>
+        <View style={styles.user}>
+          <Text style={styles.userText}>
+            Submitted by: {this.state.currentProblem.username}
+          </Text>
+        </View>
+
+        <View style={styles.problemContainer}>
+          <Text style={styles.problemText}>Do you think this a problem?</Text>
+          <View style={styles.iconContainer}>
             <TouchableHighlight
               onPress={() => this.handleVerification(true)}
+              style={styles.choices}
             >
-              <FontAwesomeIcon name="check" size={40} color={this.state.upVoteColor} />
+              <FontAwesomeIcon name="check" size={70} color={this.state.upVoteColor} />
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => this.handleVerification(false)}
+              style={styles.choices}
             >
-              <EvilIcon name="close" size={40} color={this.state.downVoteColor} />
+              <FontAwesomeIcon name="remove" size={70} color={this.state.downVoteColor} />
             </TouchableHighlight>
           </View>
+        </View>
+        <View style={styles.goBack}>
+          <Button
+            title="Go Back"
+            onPress={() => alert('works')}
+          />
         </View>
         {/* <Button
           title="Comments"
