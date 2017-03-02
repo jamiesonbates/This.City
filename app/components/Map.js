@@ -35,43 +35,59 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 50
   },
+  calloutContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
   callout: {
     width: 250,
     height: 125,
     flexDirection: 'column',
     justifyContent: 'space-between'
   },
+  calloutTitleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
   calloutTitle: {
     fontSize: 25,
-    color: 'black'
+    fontFamily: 'alegreya_sans_sc_regular',
+    color: 'black',
+    textAlign: 'center'
   },
-  people: {
-    fontSize: 20,
-    color: 'black'
-  },
-  peopleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  category: {
-    fontSize: 20
-  },
-  eye: {
-    fontSize: 20
-  },
-  calloutContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  calloutBtn: {
-    width: 150,
-    backgroundColor: '#B113FF',
-    justifyContent: 'center',
+  votesContainer: {
+    alignItems: 'center',
     flexDirection: 'row'
   },
-  calloutBtnText: {
-    color: 'white',
-    fontSize: 25
+  votes: {
+    fontSize: 20,
+    fontFamily: 'raleway_regular',
+    color: 'black',
+    marginRight: 5
+  },
+  categoryContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginLeft: 10,
+    marginRight: 10
+  },
+  category: {
+    fontFamily: 'raleway_regular',
+    fontSize: 16
+  },
+  fakeLink: {
+    color: 'lightcoral',
+    fontFamily: 'raleway_regular',
+    fontSize: 14
+  },
+  detailsContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 10,
+    marginBottom: 4
   },
   trafficIconContainer: {
     backgroundColor: '#FFD037',
@@ -96,7 +112,7 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   bikingIconContainer: {
-    backgroundColor: '#25FF59',
+    backgroundColor: 'rgba(126, 227, 119, 0.6)',
     borderRadius: 50,
     padding: 4,
     borderWidth: 2,
@@ -107,18 +123,18 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   trashIconContainer: {
-    backgroundColor: '#854700',
+    backgroundColor: 'rgba(131, 161, 230, 0.6)',
     borderRadius: 50,
-    padding: 4,
+    padding: 6,
     borderWidth: 2,
     borderColor: 'black'
   },
   trashIcon: {
     fontSize: 25,
-    color: 'white'
+    color: 'black'
   },
   noiseIconContainer: {
-    backgroundColor: '#38B1FF',
+    backgroundColor: 'rgba(219, 198, 246, 0.6)',
     borderRadius: 50,
     padding: 6,
     borderWidth: 2,
@@ -129,7 +145,7 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   dangerIconContainer: {
-    backgroundColor: '#FF3E00',
+    backgroundColor: 'rgba(237, 85, 113, 0.6)',
     borderRadius: 50,
     padding: 5,
     borderWidth: 2,
@@ -140,33 +156,33 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   brokenIconContainer: {
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(236, 226, 101, 0.6)',
     borderRadius: 50,
     padding: 5,
     borderWidth: 2,
-    borderColor: 'white'
+    borderColor: 'black'
   },
   brokenIcon: {
     fontSize: 25,
-    color: 'white'
+    color: 'black'
   },
   theftIconContainer: {
-    backgroundColor: '#FFC351',
+    backgroundColor: 'rgba(236, 173, 116, 0.6)',
     borderRadius: 50,
     padding: 5,
     borderWidth: 2,
-    borderColor: 'white'
+    borderColor: 'black'
   },
   theftIcon: {
     fontSize: 25,
     color: 'black'
   },
   otherIconContainer: {
-    backgroundColor: '#FFE3A7',
+    backgroundColor: 'rgba(124, 123, 123, 0.6)',
     borderRadius: 50,
     padding: 5,
     borderWidth: 2,
-    borderColor: 'white'
+    borderColor: 'black'
   },
   otherIcon: {
     fontSize: 25,
@@ -348,13 +364,27 @@ export default class Map extends Component {
                  style={styles.callout}
                  onPress={() => this.handleViewProblem(marker)}
                >
-                 <Text style={styles.calloutTitle}>{marker.title}</Text>
                  <View style={styles.calloutContainer}>
-                   <View style={styles.peopleContainer}>
-                     <EntypoIcons name="eye" style={styles.eye}/>
-                     <Text style={styles.people}>Total: {marker.total}</Text>
+                   <View style={styles.calloutTitleContainer}>
+                     <Text style={styles.calloutTitle}>
+                       {marker.title}
+                     </Text>
                    </View>
-                   <Text style={styles.category}>{marker.category}</Text>
+
+                   <View style={styles.categoryContainer}>
+                     <Text style={styles.category}>
+                       {marker.category}
+                     </Text>
+                   </View>
+                   <View style={styles.detailsContainer}>
+                     <View style={styles.votesContainer}>
+                       <Text style={styles.votes}>
+                         {marker.total}
+                       </Text>
+                       <IonIcons name="ios-people" size={35} color="#89c6f2" />
+                     </View>
+                     <Text style={styles.fakeLink}>MORE DETAILS</Text>
+                   </View>
                  </View>
                </MapView.Callout>
              </MapView.Marker>
