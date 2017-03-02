@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Button,
   Image,
   StyleSheet,
   Text,
@@ -9,9 +8,10 @@ import {
   View
 } from 'react-native';
 import axios from 'axios';
-import IconStyle1 from 'react-native-vector-icons/SimpleLineIcons';
-import IconStyle2 from 'react-native-vector-icons/MaterialIcons';
-import IconStyle3 from 'react-native-vector-icons/Entypo';
+import { Kohana } from 'react-native-textinput-effects';
+import Button from 'react-native-button';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 const styles = StyleSheet.create({
   pageContainer: {
@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
   },
   appNameText: {
     color: '#403d3d',
-    fontSize: 50,
+    fontFamily: 'alegreya_sans_sc_regular',
+    fontSize: 60,
     textAlign: 'center'
   },
   welcomeText: {
@@ -33,35 +34,45 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   formContainer: {
-    alignItems: 'center',
-    flexDirection: 'column',
-    padding: 30,
-  },
-  inputLabel: {
-    color: '#393836',
-    fontSize: 17,
-    fontWeight: '600',
-    marginLeft: 15,
+    marginTop: 45
   },
   inputField: {
-    borderWidth: 3,
-    borderLeftColor: 'rgba(0, 0, 0, 0)',
-    borderRightColor: 'rgba(0, 0, 0, 0)',
-    borderTopColor: 'rgba(0, 0, 0, 0)',
-    fontSize: 17,
-    height: 40,
-    marginTop: 5,
-    marginLeft: 10,
-    marginBottom: 30,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    height: 46
+  },
+  inputRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 15
+  },
+  labelStyle: {
+    color: '#55575c',
+    fontFamily: 'raleway_regular',
+    fontWeight: 'normal',
+    fontSize: 16,
     textAlign: 'center',
-    width: 230
+    width: 200
+  },
+  inputStyle: {
+    color: '#333742',
+    fontFamily: 'raleway_regular'
+  },
+  submitContainer: {
+    alignItems: 'center',
+    borderRadius: 6,
+    backgroundColor: '#6197e9',
+    flexDirection: 'row',
+    height: 40,
+    justifyContent: 'center'
+  },
+  submitButton: {
+    color: 'white',
+    fontFamily: 'raleway_regular',
+    fontWeight: 'normal',
+    fontSize: 18
   }
 });
-
-const userIcon = (<IconStyle1 name="user" size={18} color="black" />);
-const emailIcon = (<IconStyle2 name="email" size={20} color="black" />)
-const passwordIcon = (<IconStyle1 name="key" size={20} color="black" />);
-const addressIcon = (<IconStyle3 name="address" size={20} color="black" />);
 
 // BackAndroid.addEventListener("hardwareBackPress", () => {
 //   if (navigator.getCurrentRoutes().length > 1) {
@@ -113,7 +124,7 @@ export default class Registration extends Component {
     >
       <View>
         <Text style={styles.appNameText}>
-          APP NAME
+          App Name
         </Text>
         <Text style={styles.welcomeText}>
           Report. Review. Revamp.
@@ -121,47 +132,75 @@ export default class Registration extends Component {
 
         <View style={styles.formContainer}>
 
-            <View style={{ flexDirection: 'row' }}>{userIcon}<Text style={styles.inputLabel}>Username</Text></View>
-            <TextInput
-              name="username"
+          <View style={styles.inputRow}>
+            <Kohana
               style={styles.inputField}
+              label={"Username"}
+              iconClass={SimpleLineIcon}
+              iconName={'user'}
+              iconColor={'lightcoral'}
+              labelStyle={styles.labelStyle}
+              inputStyle={styles.inputStyle}
+              name="username"
               onChangeText={(username) => this.setState({username})}
               value={this.state.username}
             />
+          </View>
 
-            <View style={{ flexDirection: 'row' }}>{emailIcon}<Text style={styles.inputLabel}>Email</Text></View>
-            <TextInput
-              name="email"
+          <View style={styles.inputRow}>
+            <Kohana
               style={styles.inputField}
+              label={"Email"}
+              iconClass={MaterialCommunityIcon}
+              iconName={'email-outline'}
+              iconColor={'lightcoral'}
+              labelStyle={styles.labelStyle}
+              inputStyle={styles.inputStyle}
+              name="email"
               onChangeText={(email) => this.setState({email})}
               value={this.state.email}
             />
+          </View>
 
-            <View style={{ flexDirection: 'row' }}>{passwordIcon}<Text style={styles.inputLabel}>Password</Text></View>
-            <TextInput
+          <View style={styles.inputRow}>
+            <Kohana
+              style={styles.inputField}
+              label={"Password"}
+              iconClass={SimpleLineIcon}
+              iconName={'key'}
+              iconColor={'lightcoral'}
+              labelStyle={styles.labelStyle}
+              inputStyle={styles.inputStyle}
               name="password"
               onChangeText={(password) => this.setState({password})}
-              secureTextEntry={true}
-              style={styles.inputField}
               value={this.state.password}
             />
+          </View>
 
-            <View style={{ flexDirection: 'row' }}>{addressIcon}<Text style={styles.inputLabel}>Address</Text></View>
-            <TextInput
-              name="address"
+          <View style={styles.inputRow}>
+            <Kohana
               style={styles.inputField}
+              label={"Address"}
+              iconClass={SimpleLineIcon}
+              iconName={'location-pin'}
+              iconColor={'lightcoral'}
+              labelStyle={styles.labelStyle}
+              inputStyle={styles.inputStyle}
+              name="address"
               onChangeText={(address) => this.setState({address})}
               value={this.state.address}
             />
+          </View>
 
-            <View style={{ height: 10 }}></View>
+          <View style={{ height: 10 }}></View>
 
-            <Button
-              color="#517cc6"
-              onPress={this.handleSubmit}
-              style={styles.submitButton}
-              title="Create Account"
-            />
+          <Button
+            containerStyle={styles.submitContainer}
+            onPress={this.handleSubmit}
+            style={styles.submitButton}
+          >
+            Register
+          </Button>
         </View>
       </View>
     </Image>

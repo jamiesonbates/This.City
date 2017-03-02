@@ -11,7 +11,7 @@ import {
 import axios from 'axios';
 import Button from 'react-native-button';
 import { Kohana } from 'react-native-textinput-effects';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 const styles = StyleSheet.create({
@@ -30,14 +30,11 @@ const styles = StyleSheet.create({
     fontSize: 70,
     textAlign: 'center'
   },
-  welcomeText: {
+  taglineText: {
     color: '#403d3d',
     fontFamily: 'raleway_regular',
     fontSize: 26,
     textAlign: 'center'
-  },
-  icon: {
-    paddingRight: 15,
   },
   inputField: {
     borderRadius: 12,
@@ -90,10 +87,6 @@ const styles = StyleSheet.create({
     fontSize: 18
   }
 });
-
-const userIcon = (<SimpleLineIcon name="user" size={20} color="black" style={styles.icon} />);
-const passwordIcon = (<SimpleLineIcon name="key" size={20} color="black" style={styles.icon} />);
-const emailIcon = (<MaterialIcon name="email" size={20} color="black" />);
 
 export default class Login extends Component {
   constructor(props) {
@@ -149,9 +142,9 @@ export default class Login extends Component {
       title="Created by Kjpargeter - Freepik.com"
     >
       <Text style={styles.appNameText}>
-        APP NAME
+        App Name
       </Text>
-      <Text style={styles.welcomeText}>
+      <Text style={styles.taglineText}>
         Report. Review. Revamp.
       </Text>
 
@@ -160,22 +153,15 @@ export default class Login extends Component {
           <Kohana
             style={styles.inputField}
             label={"Email"}
-            iconClass={MaterialIcon}
-            iconName={'email'}
-            iconColor={'#a6d6ee'}
+            iconClass={MaterialCommunityIcon}
+            iconName={'email-outline'}
+            iconColor={'lightcoral'}
             labelStyle={styles.labelStyle}
             inputStyle={styles.inputStyle}
             name="email"
             onChangeText={(email) => this.setState({email})}
             value={this.state.email}
           />
-          {/* {userIcon}
-          <TextInput
-            name="email"
-            style={styles.inputField}
-            onChangeText={(email) => this.setState({email})}
-            value={this.state.email}
-          /> */}
         </View>
 
         <View style={styles.inputRow}>
@@ -184,7 +170,7 @@ export default class Login extends Component {
             label={"Password"}
             iconClass={SimpleLineIcon}
             iconName={'key'}
-            iconColor={'#a6d6ee'}
+            iconColor={'lightcoral'}
             labelStyle={styles.labelStyle}
             inputStyle={styles.inputStyle}
             secureTextEntry={true}
@@ -192,27 +178,14 @@ export default class Login extends Component {
             onChangeText={(password) => this.setState({password})}
             value={this.state.password}
           />
-          {/* {passwordIcon}
-          <TextInput
-            name="password"
-            style={styles.inputField}
-            onChangeText={(password) => this.setState({password})}
-            secureTextEntry={true}
-            value={this.state.password}
-          /> */}
         </View>
 
         <View style={{ height: 10 }}></View>
 
-        {/* <Button
-          // color="#517cc6"
-          onPress={this.callApi}
-          style={styles.submitButton}
-          // title="Submit"
-        /> */}
         <Button
           containerStyle={styles.submitContainer}
-          style={styles.submitButton}>
+          style={styles.submitButton}
+        >
           Log in
         </Button>
 
