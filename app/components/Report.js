@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Picker, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { Picker, StyleSheet, Text, TextInput, TouchableHighlight, View, ScrollView } from 'react-native';
 import axios from 'axios';
 import Button from 'react-native-button';
 import MiniMap from './MiniMap';
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     height: null,
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#6197e9'
   },
@@ -260,7 +260,6 @@ class Report extends Component {
           >
             Submit Report
         </Button>
-
       </View>
     );
   }

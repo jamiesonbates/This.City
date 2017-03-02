@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontSize: 18
   },
-  
+
 });
 
 export default class Login extends Component {
