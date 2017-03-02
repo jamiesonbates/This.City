@@ -12,6 +12,7 @@ import Login from './app/components/Login';
 import Report from './app/components/Report';
 import Problem from './app/components/Problem';
 import Registration from './app/components/Registration';
+import CameraView from './app/components/Camera';
 
 
 const routes = [];
@@ -62,6 +63,8 @@ export default class Q3ProjectFE extends Component {
       //   return <Report />
       case 'problem':
         return <Problem navigator={navigator} />
+      case 'camera':
+        return <CameraView />
       default:
         return <View>
           <Text>EMPTY</Text>
@@ -72,7 +75,7 @@ export default class Q3ProjectFE extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{name: 'map'}}
+        initialRoute={{name: 'camera'}}
         renderScene={this.renderScene.bind(this)}
       />
     );
