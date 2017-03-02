@@ -38,8 +38,7 @@ const styles = StyleSheet.create({
   inputRow: {
     alignItems: 'center',
     flexDirection: 'row',
-    marginBottom: 5,
-    // backgroundColor: 'white'
+    marginBottom: 5
   },
   labelStyle: {
     color: '#55575c',
@@ -54,6 +53,7 @@ const styles = StyleSheet.create({
     fontFamily: 'raleway_regular'
   },
   picker: {
+    flex: 1,
     backgroundColor: 'white'
   }
 });
@@ -173,7 +173,6 @@ class Report extends Component {
                       key={option.id}
                       label={option.name}
                       value={option.id}
-                      style={styles.picker}
                     />)
                 }
               </Picker>
