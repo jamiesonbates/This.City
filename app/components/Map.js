@@ -169,8 +169,8 @@ export default class Map extends Component {
         lng: 0
       },
       delta: {
-        latitudeDelta: 0,
-        longitudeDelta: 0
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005
       },
       problems: [],
       problemModalOpen: false
@@ -221,19 +221,19 @@ export default class Map extends Component {
   iconStyle(delta) {
     if (delta >= 0.1) {
       return {
-        fontSize: 8,
+        fontSize: 22,
         color: 'black'
       }
     }
     if (delta >= 0.05) {
       return {
-        fontSize: 6,
+        fontSize: 22,
         color: 'black'
       }
     }
     if (delta >= 0.01) {
       return {
-        fontSize: 15,
+        fontSize: 22,
         color: 'black'
       }
     }
@@ -245,7 +245,7 @@ export default class Map extends Component {
     }
     if (delta >= 0.0001) {
       return {
-        fontSize: 15,
+        fontSize: 22,
         color: 'black'
       }
     }
