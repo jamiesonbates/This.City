@@ -42,6 +42,9 @@ class Control extends Component {
   }
 
   render() {
+    const currentLat = this.props.currentLocation.lat;
+    const currentLng = this.props.currentLocation.lng;
+
     return (
       <View style={styles.container}>
         <Modal
@@ -51,7 +54,7 @@ class Control extends Component {
 
         >
           <Report
-            currentLocation={this.props.currentLocation} navigator={this.props.nav}
+            currentLocation={{lat: currentLat, lng: currentLng}} navigator={this.props.nav}
             toggleReport={this.toggleReport}
             updateMap={this.props.updateMap}
             userInfo={this.props.userInfo}

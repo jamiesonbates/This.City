@@ -169,8 +169,8 @@ export default class Map extends Component {
         lng: 0
       },
       delta: {
-        latitudeDelta: 0,
-        longitudeDelta: 0
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005
       },
       problems: [],
       problemModalOpen: false
@@ -199,6 +199,23 @@ export default class Map extends Component {
   }
 
   handleRegionChange(event) {
+    const { center, delta } = this.state;
+
+    const eventCenter = {
+      lat: event.latitude,
+      lng: event.longitude
+    }
+
+    const eventDelta = {
+      latitudeDelta: event.latitudeDelta.toFixed(4),
+      longitudeDelta: event.longitudeDelta.toFixed(4)
+    }
+
+    if (center == eventCenter || delta == eventDelta) {
+      return;
+    }
+    console.error('centerLat: ' + center.lat, 'centerLng: ' + center.lng, 'eventCenterLat: ' + eventCenter.lat, 'eventCenterLng: ' + eventCenter.lng, 'deltaLat: ' + delta.latitudeDelta, 'deltaLng: ' + delta.longitudeDelta,  'eventDeltaLat: ' + eventDelta.latitudeDelta), 'eventDeltaLng: ' + eventDelta.longitudeDelta;
+
     this.setState({
       center: {
         lat: event.latitude,
@@ -439,12 +456,12 @@ export default class Map extends Component {
       (position) => {
         this.setState({
           center: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
+            lat: parseFloat(position.coords.latitude.toFixed(4)),
+            lng: parseFloat(position.coords.longitude.toFixed(4))
           },
           currentLocation: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
+            lat: parseFloat(position.coords.latitude.toFixed(4)),
+            lng: parseFloat(position.coords.longitude.toFixed(4))
           }
         });
 
@@ -465,8 +482,8 @@ export default class Map extends Component {
         //   lng: position.coords.longitude
         // },
         currentLocation: {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lat: parseFloat(position.coords.latitude.toFixed(4)),
+          lng: parseFloat(position.coords.longitude.toFixed(4))
         }
       });
 
