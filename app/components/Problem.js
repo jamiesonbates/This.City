@@ -271,7 +271,7 @@ class Problem extends Component {
         </View>
         <View style={styles.goBack}>
           <Button
-            onPress={() => alert('works')}
+            onPress={() => this.props.toggleProblem()}
             style={styles.goBackBtn}
           >
             Go Back

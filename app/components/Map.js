@@ -326,6 +326,7 @@ export default class Map extends Component {
           <Problem
             currentProblem={this.props.currentProblem}
             userInfo={this.props.userInfo}
+            toggleProblem={this.toggleProblem}
           />
         </Modal>
         <MapView
