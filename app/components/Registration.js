@@ -76,15 +76,6 @@ const styles = StyleSheet.create({
   }
 });
 
-// BackAndroid.addEventListener("hardwareBackPress", () => {
-//   if (navigator.getCurrentRoutes().length > 1) {
-//     this.navigate('login')
-//     return true // do not exit app
-//   } else {
-//     return false // exit app
-//   }
-// });
-
 export default class Registration extends Component {
   constructor(props) {
     super(props);
@@ -173,6 +164,7 @@ export default class Registration extends Component {
               iconColor={'lightcoral'}
               labelStyle={styles.labelStyle}
               inputStyle={styles.inputStyle}
+              secureTextEntry={true}
               name="password"
               onChangeText={(password) => this.setState({password})}
               value={this.state.password}
