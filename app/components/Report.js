@@ -75,16 +75,15 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   labelStyle: {
-    color: 'black',
-    fontStyle: 'normal',
+    color: '#55575c',
+    fontWeight: 'normal',
     fontFamily: 'raleway_regular',
-    fontSize: 16,
+    fontSize: 18,
     textAlign: 'center',
-    width: 260
+    width: 340
   },
   inputStyle: {
     color: 'black',
-    fontStyle: 'normal',
     fontFamily: 'raleway_regular'
   },
   picker: {
@@ -194,7 +193,7 @@ class Report extends Component {
           <View style={styles.inputRowTextInput}>
             <Kohana
               style={styles.inputField}
-              lableStyle={styles.labelStyle}
+              labelStyle={styles.labelStyle}
               inputStyle={styles.inputStyle}
               label={'Add a Title'}
               iconClass={MaterialIcons}
@@ -211,6 +210,7 @@ class Report extends Component {
             <Kohana
               style={styles.inputField}
               label={'Write a Description'}
+              labelStyle={styles.labelStyle}
               iconClass={MaterialIcons}
               iconName={'description'}
               iconColor={'#89c6f2'}
