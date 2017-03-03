@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
   },
   appNameText: {
     color: '#403d3d',
-    fontFamily: 'alegreya_sans_sc_regular',
-    fontSize: 70,
+    fontFamily: 'raleway_regular',
+    fontSize: 80,
     textAlign: 'center'
   },
   taglineText: {
@@ -143,7 +143,7 @@ export default class Login extends Component {
       title="Created by Kjpargeter - Freepik.com"
     >
       <Text style={styles.appNameText}>
-        App Name
+        this.<Text style={{ color: 'lightcoral' }}>city</Text>
       </Text>
       <Text style={styles.taglineText}>
         Report. Review. Revamp.

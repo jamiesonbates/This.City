@@ -24,14 +24,16 @@ const styles = StyleSheet.create({
   },
   appNameText: {
     color: '#403d3d',
-    fontFamily: 'alegreya_sans_sc_regular',
-    fontSize: 60,
+    fontFamily: 'raleway_regular',
+    fontSize: 70,
     textAlign: 'center'
   },
   welcomeText: {
     color: '#403d3d',
     fontSize: 20,
-    textAlign: 'center'
+    lineHeight: 30,
+    textAlign: 'center',
+    width: 300
   },
   formContainer: {
     marginTop: 45
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontSize: 16,
     textAlign: 'center',
-    width: 200
+    width: 270
   },
   inputStyle: {
     color: '#333742',
@@ -124,10 +126,10 @@ export default class Registration extends Component {
     >
       <View>
         <Text style={styles.appNameText}>
-          App Name
+          this.<Text style={{ color: 'lightcoral' }}>city</Text>
         </Text>
         <Text style={styles.welcomeText}>
-          Report. Review. Revamp.
+          Join our citizen community dedicated to making a better, cleaner, safer Seattle.
         </Text>
 
         <View style={styles.formContainer}>
