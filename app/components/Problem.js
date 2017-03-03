@@ -170,6 +170,7 @@ class Problem extends Component {
       axios
         .patch('https://q3project-server.herokuapp.com/api/verification', verificationInfo)
         .then((res) => {
+          this.props.updateMap();
           if (res.data.verified) {
             this.setState({
               upVoteColor: 'green',
@@ -191,6 +192,7 @@ class Problem extends Component {
       axios
         .post('https://q3project-server.herokuapp.com/api/verification', verificationInfo)
         .then((res) => {
+          this.props.updateMap();
           if (res.data.verified) {
             this.setState({
               upVoteColor: 'green',
