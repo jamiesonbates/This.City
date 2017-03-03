@@ -5,15 +5,16 @@ import IconStyle2 from 'react-native-vector-icons/FontAwesome';
 import IconStyle3 from 'react-native-vector-icons/Foundation';
 import Report from './Report';
 
-const userIcon = (<IconStyle1 name="user" size={30} color="white"/>);
-const reportIcon = (<IconStyle2 name="exclamation-triangle" size={40} color="white"/>);
-const trendingIcon = (<IconStyle3 name="graph-trend" size={40} color="white"/>);
+const userIcon = (<IconStyle1 name="user" size={40} color="white"/>);
+const reportIcon = (<IconStyle2 name="exclamation-triangle" size={50} color="white"/>);
+const trendingIcon = (<IconStyle3 name="graph-trend" size={50} color="white"/>);
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#242823',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    alignItems: 'center',
     padding: 10,
   },
   icon: {
