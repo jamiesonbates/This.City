@@ -424,7 +424,7 @@ export default class Map extends Component {
        </MapView>
 
        <Control
-         currentLocation={this.state.center}
+         currentLocation={this.state.currentLocation}
          nav={this.props.navigator}
          updateMap={this.updateMap}
          userInfo={this.props.userInfo}
