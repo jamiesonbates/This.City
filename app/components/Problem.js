@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   appNameText: {
-    fontSize: 50,
-    fontFamily: 'alegreya_sans_sc_regular'
+    fontSize: 70,
+    fontFamily: 'raleway_regular'
   },
   title: {
     flexDirection: 'column',
@@ -216,7 +216,9 @@ class Problem extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.appName}>
-          <Text style={styles.appNameText}>App Name</Text>
+          <Text style={styles.appNameText}>
+            this.<Text style={{ color: 'lightcoral' }}>city</Text>
+          </Text>
         </View>
 
         <View style={styles.infoContainer}>
