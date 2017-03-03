@@ -180,7 +180,6 @@ export default class Map extends Component {
     this.handleViewProblem = this.handleViewProblem.bind(this);
     this.updateMap = this.updateMap.bind(this);
     this.toggleProblem = this.toggleProblem.bind(this);
-    this.handleRegionChange = this.handleRegionChange.bind(this);
   }
 
   toggleProblem() {
@@ -196,23 +195,6 @@ export default class Map extends Component {
     this.props.saveCurrentProblem(currentProblem);
 
     this.setState({ problemModalOpen: true });
-  }
-
-  handleRegionChange(event) {
-    this.setState({
-      center: {
-        lat: event.latitude,
-        lng: event.longitude
-      },
-      delta: {
-        latitudeDelta: event.latitudeDelta,
-        longitudeDelta: event.longitudeDelta
-      }
-    });
-  }
-
-  viewProblem() {
-    this.props.navigator('')
   }
 
   updateMap() {
@@ -355,7 +337,6 @@ export default class Map extends Component {
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           }}
-          onRegionChangeComplete={(e) => this.handleRegionChange(e)}
        >
          {
            this.state.problems
@@ -451,19 +432,12 @@ export default class Map extends Component {
         this.updateMap();
       },
       (err) => console.error(err.message)
-      // ,
-      // {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
   }
 
   componentDidMount() {
     this.watchID = navigator.geolocation.watchPosition((position) => {
       this.setState({
-        // DON'T UNCOMMENT
-        // center: {
-        //   lat: position.coords.latitude,
-        //   lng: position.coords.longitude
-        // },
         currentLocation: {
           lat: position.coords.latitude,
           lng: position.coords.longitude
