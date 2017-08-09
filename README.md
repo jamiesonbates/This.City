@@ -4,9 +4,6 @@
 [![This.City: Reporting Issues](/screenshots/report.png)](https://github.com/jamiesonbates/this.city)
 [![This.City: Viewing Issues](/screenshots/problem.png)](https://github.com/jamiesonbates/this.city)
 
-## Demo Video
-Coming soon...
-
 ## Description
 This.City is a crowd sourcing platform for reporting problems within a city. Anyone can report and track problems they see in their neighborhood and potentially discover a solution by working with others who share their concerns.
 
