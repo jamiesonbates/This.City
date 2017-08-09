@@ -26,6 +26,6 @@ This.City is a native application that allows its users to pin problems to a map
 6. Build a system that allows users to close issues and/or that closes issues automatically based on certain criteria.
 
 ## Backend
-The backend for this project lives [here](http://github.com/jamiesonbates/this.city-Server)
+The backend for this project lives [here](http://github.com/jamiesonbates/this.city-Server).
 
 *Originally created in collaboration with* [Minh Chau](https://github.com/xchau)
